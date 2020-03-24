@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import Navbar from './navbar';
 import Main from './main';
@@ -16,6 +16,6 @@ const App = () => (
 
     <Footer />
   </Router>
-)
+);
 
 export default App;
