@@ -6,10 +6,11 @@ import {
 
 import Main from './main';
 import Footer from './footer';
+import styles from './App.module.scss'
 
 const App = () => (
   <Router className="App">
-    <div className="Navbar">
+    <div className={styles.Navbar}>
       <ul>
         <li>
           <Link to="/">Home</Link>
