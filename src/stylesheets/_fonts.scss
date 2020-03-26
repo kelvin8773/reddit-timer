@@ -1,43 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Code:300,400,500,600,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Viga&display=swap');
-
-@import url('https://fonts.googleapis.com/css?family=Gothic+A1:100,200,300,400,500,600,700,800,900&display=swap');
-
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Bitter:400,400i,700&display=swap');
 
 /* **** Google Font family reference ****
-
-font-family: 'Fira Code', monospace;
-font-family: 'Viga', sans-serif;
-font-family: 'Gothic A1', ;
-font-family: 'IBM Plex Sans', ;
+font-family: 'Bitter', serif;
 
 */
 
 body {
-  font-family: 'Fira Code', monospace;
+  font-family: 'Bitter', serif;
   font-size: 14px;
   color: $grey-1;
 }
 
 h1 {
-  font-family: 'Gothic A1', 'IBM Plex Sans';
+  font-family: 'Bitter', serif;
   font-size: 3rem;
-  font-weight: 700;
 }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'IBM Plex Sans';
-}
 
 h2 {
   font-size: 2rem;
-  font-weight: 600;
 }
 
 h3 {
