@@ -11,12 +11,12 @@ import Search from './search';
 const Main = () => (
   <div className="Main text-center">
     <Switch>
-      <Route exact path="/">
-        <Home />
+      <Route path="/search">
+        <Search />
       </Route>
 
-      <Route exact path="/search">
-        <Search />
+      <Route path="/">
+        <Home />
       </Route>
     </Switch>
   </div>
