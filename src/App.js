@@ -6,16 +6,18 @@ import {
 import Navbar from './navbar';
 import Main from './main';
 import Footer from './footer';
-// import styles from './App.module.scss'
+import styles from './App.module.scss';
 
 const App = () => (
-  <Router className="App">
-    <Navbar />
+  <div className={styles.App}>
+    <Router>
+      <Navbar />
 
-    <Main />
+      <Main />
 
-    <Footer />
-  </Router>
+      <Footer />
+    </Router>
+  </div>
 );
 
 export default App;
