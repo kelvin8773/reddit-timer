@@ -14,13 +14,32 @@ const Navbar = () => (
     </Link>
     <ul>
       <li>
-        <Link to="/search">Search</Link>
+        <Link to={{
+          pathname: 'search',
+          search: 'javascript',
+        }}
+        >
+          Search
+        </Link>
+      </li>
+
+      <li>
+        <Link to={{
+          pathname: '/',
+          hash: '#how-it-work',
+        }}
+        >
+          How it works
+        </Link>
       </li>
       <li>
-        <Link to="/#how-it-work">How it works</Link>
-      </li>
-      <li>
-        <Link to="/#about">About</Link>
+        <Link to={{
+          pathname: '/',
+          hash: '#about',
+        }}
+        >
+          About
+        </Link>
       </li>
     </ul>
   </div>
