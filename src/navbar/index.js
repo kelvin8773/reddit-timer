@@ -3,15 +3,12 @@ import {
   Link,
 } from 'react-router-dom';
 import styles from './navbar.module.scss';
-import logo from './logo.svg';
+import { ReactComponent as Logo } from './logo.svg';
 
 const Navbar = () => (
   <div className={styles.navbar}>
-    <Link to="/" className="linkLogo">
-      <img
-        src={logo}
-        alt="reddit logo"
-      />
+    <Link to="/">
+      <Logo />
     </Link>
 
     <div className={styles.linkItems}>
