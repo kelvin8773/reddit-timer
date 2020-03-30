@@ -8,6 +8,7 @@ import Main from './main';
 import Footer from './footer';
 import styles from './app.module.scss';
 
+
 const App = () => (
   <div className={styles.App}>
     <Router>
