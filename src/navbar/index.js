@@ -2,46 +2,47 @@ import React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import styles from './Navbar.module.scss';
+import styles from './navbar.module.scss';
+import logo from './logo.svg';
 
 const Navbar = () => (
-  <div className={styles.Navbar}>
-    <Link to="/">
+  <div className={styles.navbar}>
+    <Link to="/" className="linkLogo">
       <img
-        src="./assets/navbar/logo.svg"
+        src={logo}
         alt="reddit logo"
       />
     </Link>
-    <ul>
-      <li>
-        <Link to={{
-          pathname: 'search',
-          search: 'javascript',
-        }}
-        >
-          Search
-        </Link>
-      </li>
 
-      <li>
-        <Link to={{
-          pathname: '/',
-          hash: '#how-it-work',
-        }}
-        >
-          How it works
+    <div className={styles.linkItems}>
+      <Link to={{
+        pathname: 'search',
+        search: 'javascript',
+      }}
+        className={styles.linkItem}
+      >
+        Search
         </Link>
-      </li>
-      <li>
-        <Link to={{
-          pathname: '/',
-          hash: '#about',
-        }}
-        >
-          About
+
+      <Link to={{
+        pathname: '/',
+        hash: '#how-it-work',
+      }}
+        className={styles.linkItem}
+      >
+        How it works
         </Link>
-      </li>
-    </ul>
+
+      <Link to={{
+        pathname: '/',
+        hash: '#about',
+      }}
+        className={styles.linkItem}
+      >
+        About
+        </Link>
+
+    </div>
   </div>
 
 );

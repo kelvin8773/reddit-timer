@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './Home.module.scss';
+import styles from './home.module.scss';
 
 const Home = () => (
   <div>
-    <div id="how-it-works" className={styles.how_it_works}>
+    <div id="how-it-works" className={styles.howItWorks}>
       <h3>
         How it works
       </h3>

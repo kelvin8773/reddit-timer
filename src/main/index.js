@@ -7,10 +7,10 @@ import {
 
 import Home from './home';
 import Search from './search';
-import styles from './Main.module.scss';
+import styles from './main.module.scss';
 
 const Main = () => (
-  <div className={styles.Main}>
+  <div className={styles.main}>
     <Switch>
       <Route path="/search">
         <Search />
