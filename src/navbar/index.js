@@ -12,32 +12,35 @@ const Navbar = () => (
     </Link>
 
     <div className={styles.linkItems}>
-      <Link to={{
-        pathname: 'search',
-        search: 'javascript',
-      }}
+      <Link
+        to={{
+          pathname: 'search',
+          search: 'javascript',
+        }}
         className={styles.linkItem}
       >
         Search
-        </Link>
+      </Link>
 
-      <Link to={{
-        pathname: '/',
-        hash: '#how-it-work',
-      }}
+      <Link
+        to={{
+          pathname: '/',
+          hash: '#how-it-work',
+        }}
         className={styles.linkItem}
       >
         How it works
-        </Link>
+      </Link>
 
-      <Link to={{
-        pathname: '/',
-        hash: '#about',
-      }}
+      <Link
+        to={{
+          pathname: '/',
+          hash: '#about',
+        }}
         className={styles.linkItem}
       >
         About
-        </Link>
+      </Link>
 
     </div>
   </div>
