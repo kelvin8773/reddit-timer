@@ -1,8 +1,23 @@
 import React from 'react';
+import styles from './home.module.scss';
 
 const Home = () => (
-  <div className="Search">
-    Home Content Here. (learn React)
+  <div>
+    <div id="how-it-works" className={styles.howItWorks}>
+      <h3>
+        How it works
+      </h3>
+
+    </div>
+
+    <div id="about" className={styles.about}>
+      <h3>
+        About
+      </h3>
+
+    </div>
+
+
   </div>
 );
 
