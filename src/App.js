@@ -6,7 +6,7 @@ import {
 
 import Main from './main';
 import Footer from './footer';
-import styles from './App.module.scss'
+import styles from './App.module.scss';
 
 const App = () => (
   <Router className="App">
