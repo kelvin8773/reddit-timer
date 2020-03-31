@@ -1,5 +1,7 @@
+@import '../app.module.scss';
+
 .navbar {
-    height: 100px;
+    height: $headerHeight;
     display: flex;
     justify-content: space-between;
     align-items: center;
