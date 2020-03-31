@@ -8,13 +8,13 @@ import { ReactComponent as Logo } from './sign.svg';
 
 const Footer = () => (
   <div className={styles.footer}>
-    <a href=" https://ooloo.io" className={styles.weblink}>
+    <a href=" https://ooloo.io" className={styles.leftLink}>
       ooloo.io
     </a>
-    <Link to="/" className={styles.logolink}>
+    <Link to="/">
       <Logo />
     </Link>
-    <Link to="/terms">
+    <Link to="/terms" className={styles.rightLink}>
       Terms & Privacy
     </Link>
   </div>
