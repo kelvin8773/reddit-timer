@@ -26,12 +26,19 @@ const Home = () => (
       </h3>
 
       <p>
-        This app was created during a course on
-        <a href=" https://ooloo.io" className={styles.link}> ooloo.io </a>
-        with the goal to implement a pixel-perfect real-world application with professional workflows and tools like Kanban, Asana, Zeplin, GitHub, pull requests and code reviews.&nbsp;
-        <a href="https://ooloo.io/employers" className={styles.link}>
-          Click here for more information.
-        </a>
+        <div>
+          This app was created during a course on
+          <a href=" https://ooloo.io" className={styles.link}> ooloo.io </a>
+          with the goal to implement a pixel-perfect
+        </div>
+        <div />
+        real-world application with professional workflows and tools like Kanban, Asana, Zeplin,
+        <div>
+          GitHub, pull requests and code reviews.&nbsp;
+          <a href="https://ooloo.io/employers" className={styles.link}>
+            Click here for more information.
+          </a>
+        </div>
       </p>
 
     </div>
