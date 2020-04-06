@@ -2,5 +2,7 @@
 
 .main {
     height: calc(100vh - #{$headerHeight} - #{$footerHeight});
-    padding: 0 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
