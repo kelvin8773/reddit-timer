@@ -1,0 +1,63 @@
+@import '../../stylesheets/color';
+@import '../../stylesheets/fonts';
+
+.hero {
+    margin: 0 auto 105px;
+    width: 1114px;
+    max-width: 100%;
+}
+
+.heroTitle {
+  width: 616px;
+  height: 46px;
+  margin: 27px auto 20px;
+  font-family: $title-font;
+  font-size: 38px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+}
+
+.subTitle {
+  width: 578px;
+  height: 19px;
+  font-size: 16px;
+  margin: 0 auto 46px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $gray-base;
+}
+
+.heroButton {
+  width: 217px;
+  margin: 0 auto 46px;
+}
+
+.searchValue {
+  width: 91px;
+  height: 19px;
+  margin: 0 auto 37px;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $gray-base;
+}
+
+.heatMap {
+  width: 1114px;
+  height: 332px;
+  object-fit: contain;
+}
+

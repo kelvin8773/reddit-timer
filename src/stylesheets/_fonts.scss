@@ -7,10 +7,10 @@ font-family: 'Montserrat', sans-serif;
 font-family: 'Bitter', serif;
 */
 
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
-  color: $grey-1;
 }
 
 h1,
@@ -22,3 +22,5 @@ h6 {
   font-family: 'Bitter', serif;
 }
 
+$body-font: 'Montserrat', sans-serif;
+$title-font: 'Bitter', serif;
