@@ -11,11 +11,14 @@ const Button = ({ children, linkTo }) => (
       {children}
     </Link>
   </div>
-)
+);
 
-Button.protoType = {
-  children: PropTypes.string.isRequired,
-  linkTo: PropTypes.object.isRequired,
-}
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  linkTo: PropTypes.objectOf([
+    PropTypes.string.isRequired,
+    PropTypes.string.isRequired,
+  ]).isRequired,
+};
 
 export default Button;
