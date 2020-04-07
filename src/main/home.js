@@ -1,24 +1,12 @@
 import React from 'react';
 import styles from './home.module.scss';
+import InfoSection from './components/infoSection';
 
 const Home = () => (
-  <div>
-    <div id="how-it-works" className={styles.howItWorks}>
-      <h3>
-        How it works
-      </h3>
-
-    </div>
-
-    <div id="about" className={styles.about}>
-      <h3>
-        About
-      </h3>
-
-    </div>
-
-
+  <div className={styles.home}>
+    <InfoSection />
   </div>
+
 );
 
 export default Home;

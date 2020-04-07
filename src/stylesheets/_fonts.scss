@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap');
 
-@import url('https://fonts.googleapis.com/css?family=Bitter:400,400i,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bitter:400,700&display=swap');
 
 /* **** Google Font family reference ****
 font-family: 'Montserrat', sans-serif;
@@ -16,20 +16,9 @@ body {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-family: 'Bitter', serif;
 }
 
-h1 {
-  font-size: 3rem;
-}
-
-
-h2 {
-  font-size: 2rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-  font-weight: 500;
-}

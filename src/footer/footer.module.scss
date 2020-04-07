@@ -4,8 +4,10 @@
     height: $footerHeight;
     display: flex;
     align-items: center;
-    padding: 0 250px;
     font-size: 14px;
+    margin: 0 auto;
+    width: 940px;
+    max-width: 100%;
 }
 
 .leftLink {
