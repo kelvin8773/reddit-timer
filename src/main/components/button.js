@@ -1,24 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Link,
-} from 'react-router-dom';
-import styles from './button.module.scss';
+import Styled from 'styled-components';
 
-const Button = ({ children, linkTo }) => (
-  <div className={styles.button}>
-    <Link to={linkTo} className={styles.text}>
-      {children}
-    </Link>
-  </div>
+const StyledButton = Styled.a`
+  padding: 9px 15px;
+  height: 36px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 0.64;
+  background-color: #fdb755;
+  color: #ffffff;
+  text-transform: uppercase;
+  &:hover {
+    background: #fcc755;
+  }
+`;
+
+const Button = ({ children }) => (
+  <StyledButton>
+    {children}
+  </StyledButton>
+
 );
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  linkTo: PropTypes.objectOf([
-    PropTypes.string.isRequired,
-    PropTypes.string.isRequired,
-  ]).isRequired,
 };
 
 export default Button;
