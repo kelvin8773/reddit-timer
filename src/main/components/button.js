@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'styled-components';
 
-const StyledButton = Styled.a`
-  padding: 9px 15px;
-  height: 36px;
+const StyledButton = Styled.button`
+  padding: 14px 17.5px;
   border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
@@ -12,6 +11,8 @@ const StyledButton = Styled.a`
   background-color: #fdb755;
   color: #ffffff;
   text-transform: uppercase;
+  border: none;
+  cursor: pointer;
   &:hover {
     background: #fcc755;
   }

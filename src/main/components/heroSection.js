@@ -7,8 +7,6 @@ import styles from './hero.module.scss';
 import heatMap from './table.png';
 import searchJson from '../../config/search.json';
 
-const destinatin = `/search?${searchJson.default}`;
-
 const HeroSection = () => (
   <div id="hero-section" className={styles.hero}>
     <h1 className={styles.heroTitle}>
@@ -20,7 +18,7 @@ const HeroSection = () => (
     </h4>
 
     <div className={styles.heroButton}>
-      <Link to={destinatin}>
+      <Link to={`/search?${searchJson.default}`}>
         <Button>
           Show me the best time
         </Button>
@@ -33,7 +31,7 @@ const HeroSection = () => (
       {searchJson.default}
     </div>
 
-    <Link to={destinatin}>
+    <Link to={`/search?${searchJson.default}`}>
       <img
         src={heatMap}
         alt="heat map"
