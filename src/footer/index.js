@@ -2,22 +2,48 @@ import React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-
-import styles from './footer.module.scss';
+import Styled from 'styled-components';
 import { ReactComponent as Logo } from './sign.svg';
 
+const StyledFooter = Styled.div`
+    height: 100px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 0 auto;
+    width: 940px;
+    max-width: 100%;
+`;
+
+const LinkItem = Styled(Link)`
+  flex: 1;
+
+  &:last-child {
+    text-align: right;
+  }
+
+`;
+
+
 const Footer = () => (
-  <div className={styles.footer}>
-    <a href=" https://ooloo.io" className={styles.leftLink}>
+  <StyledFooter>
+    <LinkItem
+      as="a"
+      href="http://ooloo.io"
+      target="_blank"
+      rel="noopener no-referrer"
+    >
       ooloo.io
-    </a>
+    </LinkItem>
+
     <Link to="/">
       <Logo />
     </Link>
-    <Link to="/terms" className={styles.rightLink}>
+
+    <LinkItem to="/terms" >
       Terms & Privacy
-    </Link>
-  </div>
+    </LinkItem>
+  </StyledFooter>
 
 );
 
