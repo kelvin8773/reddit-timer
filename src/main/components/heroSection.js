@@ -2,8 +2,8 @@ import React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import Button from './button';
 import Styled from 'styled-components';
+import Button from './button';
 import heatMap from './table.png';
 import searchJson from '../../config/search.json';
 
@@ -34,7 +34,7 @@ const HeroSearchValue = Styled.div`
 `;
 
 const HeroSection = () => (
-  <Hero id="hero-section" >
+  <Hero id="hero-section">
     <HeroTitle>
       No reactions to your reddit posts?
     </HeroTitle>

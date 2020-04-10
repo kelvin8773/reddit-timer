@@ -51,7 +51,7 @@ const Navbar = () => (
 
     </LinkItems>
 
-  </StyledNavbar >
+  </StyledNavbar>
 
 
 );

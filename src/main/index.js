@@ -4,9 +4,9 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Styled from 'styled-components';
 import Home from './pages/home';
 import Search from './pages/search';
-import Styled from 'styled-components';
 
 const StyledMain = Styled.div`
     min-height: calc(100vh - 200px);

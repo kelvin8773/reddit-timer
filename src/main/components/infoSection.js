@@ -55,11 +55,11 @@ const InfoSection = () => (
       </AboutHeadLine>
       <InfoLine>
         This app was created during a course on
-        <a href=" https://ooloo.io" target="_blank"> ooloo.io </a>
+        <a href=" https://ooloo.io" target="_blank" rel="noopener noreferrer"> ooloo.io </a>
         with the goal to implement a pixel-perfect real-world application with
         professional workflows and tools like Kanban, Asana, Zeplin, GitHub,
         pull requests and code reviews.&nbsp;
-        <a href="https://ooloo.io/employers" target="_blank">
+        <a href="https://ooloo.io/employers">
           Click here for more information.
         </a>
       </InfoLine>

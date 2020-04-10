@@ -30,6 +30,7 @@ const Footer = () => (
       as="a"
       href="http://ooloo.io"
       target="_blank"
+      rel="noopener noreferrer"
     >
       ooloo.io
     </LinkItem>
@@ -38,7 +39,7 @@ const Footer = () => (
       <Logo />
     </Link>
 
-    <LinkItem to="/terms" >
+    <LinkItem to="/terms">
       Terms & Privacy
     </LinkItem>
   </StyledFooter>
