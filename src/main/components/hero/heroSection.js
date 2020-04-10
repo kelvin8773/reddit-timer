@@ -2,10 +2,10 @@ import React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import Button from './button';
+import Button from '../button';
 import styles from './hero.module.scss';
 import heatMap from './table.png';
-import searchJson from '../../config/search.json';
+import searchJson from '../../../config/search.json';
 
 const HeroSection = () => (
   <div id="hero-section" className={styles.hero}>

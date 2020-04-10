@@ -2,48 +2,56 @@ import React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import styles from './navbar.module.scss';
+import Styled from 'styled-components';
 import { ReactComponent as Logo } from './logo.svg';
+import SearchJson from '../config/search.json';
+
+const StyledNavbar = Styled.div`
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 80px;
+`;
+
+const StyledLogo = Styled(Logo)`
+    margin-top: 2px;
+`;
+
+const LinkItems = Styled.div`
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const LinkItem = Styled(Link)`
+    margin-left: 26px;
+`;
+
 
 const Navbar = () => (
-  <div className={styles.navbar}>
+  <StyledNavbar>
     <Link to="/">
-      <Logo />
+      <StyledLogo />
     </Link>
 
-    <div className={styles.linkItems}>
-      <Link
-        to={{
-          pathname: 'search',
-          search: 'javascript',
-        }}
-        className={styles.linkItem}
-      >
+    <LinkItems>
+      <LinkItem to={`/search?${SearchJson.default}`}>
         Search
-      </Link>
+      </LinkItem>
 
-      <Link
-        to={{
-          pathname: '/',
-          hash: '#how-it-work',
-        }}
-        className={styles.linkItem}
-      >
+      <LinkItem to="/#how-it-work">
         How it works
-      </Link>
+      </LinkItem>
 
-      <Link
-        to={{
-          pathname: '/',
-          hash: '#about',
-        }}
-        className={styles.linkItem}
-      >
+      <LinkItem to="/#about">
         About
-      </Link>
+      </LinkItem>
 
-    </div>
-  </div>
+    </LinkItems>
+
+  </StyledNavbar >
+
 
 );
 
