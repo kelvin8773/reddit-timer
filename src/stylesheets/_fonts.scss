@@ -7,6 +7,7 @@ font-family: 'Montserrat', sans-serif;
 font-family: 'Bitter', serif;
 */
 
+@import './color';
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -21,9 +22,11 @@ body {
 h1 {
   font-family: 'Bitter', serif;
   font-size: 38px;
+  color: #000000;
 }
 
 h4 {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+  color: $gray-base;
 }

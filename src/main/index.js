@@ -4,13 +4,16 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Home from './pages/home';
+import Search from './pages/search';
+import Styled from 'styled-components';
 
-import Home from './home';
-import Search from './search';
-import styles from './main.module.scss';
+const StyledMain = Styled.div`
+    min-height: calc(100vh - 200px);
+`;
 
 const Main = () => (
-  <div className={styles.main}>
+  <StyledMain>
     <Switch>
       <Route path="/search">
         <Search />
@@ -20,7 +23,7 @@ const Main = () => (
         <Home />
       </Route>
     </Switch>
-  </div>
+  </StyledMain>
 );
 
 export default Main;
