@@ -3,43 +3,66 @@ import {
   Link,
 } from 'react-router-dom';
 import Button from '../button';
-import styles from './hero.module.scss';
+import Styled from 'styled-components';
 import heatMap from './table.png';
 import searchJson from '../../../config/search.json';
 
+const Hero = Styled.div`
+  margin: 0 auto 133px;
+  width: 1114px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const HeroTitle = Styled.h1`
+  margin: 27px auto 20px;
+`;
+
+const HeroSubTitle = Styled.h4`
+  margin: 0 auto 46px;
+`;
+
+const HeroButton = Styled(Link)`
+   margin: 0 auto 46px;
+`;
+
+const HeroSearchValue = Styled.div`
+  margin: 0 auto 37px;
+  font-weight: 500;
+`;
+
+
 const HeroSection = () => (
-  <div id="hero-section" className={styles.hero}>
-    <h1 className={styles.heroTitle}>
+  <Hero id="hero-section" >
+    <HeroTitle>
       No reactions to your reddit posts?
-    </h1>
+    </HeroTitle>
 
-    <h4 className={styles.subTitle}>
+    <HeroSubTitle>
       Great timing, great results! Find the best time to post on your subreddit.
-    </h4>
+    </HeroSubTitle>
 
-    <div className={styles.heroButton}>
-      <Link to={`/search?${searchJson.default}`}>
-        <Button>
-          Show me the best time
-        </Button>
-      </Link>
-    </div>
+    <HeroButton to={`/search?${searchJson.default}`}>
+      <Button>
+        Show me the best time
+      </Button>
+    </HeroButton>
 
-
-    <div className={styles.searchValue}>
+    <HeroSearchValue>
       r/
       {searchJson.default}
-    </div>
+    </HeroSearchValue>
 
     <Link to={`/search?${searchJson.default}`}>
       <img
         src={heatMap}
         alt="heat map"
-        className={styles.heatMap}
       />
     </Link>
 
-  </div>
+  </Hero>
 );
 
 export default HeroSection;
