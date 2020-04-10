@@ -18,7 +18,7 @@ const StyledFooter = Styled.div`
 const LinkItem = Styled(Link)`
   flex: 1;
   color: inherit;
-  
+
   &:last-child {
     text-align: right;
   }
@@ -30,7 +30,6 @@ const Footer = () => (
       as="a"
       href="http://ooloo.io"
       target="_blank"
-      rel="noopener no-referrer"
     >
       ooloo.io
     </LinkItem>
