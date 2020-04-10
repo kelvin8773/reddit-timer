@@ -17,13 +17,12 @@ const StyledFooter = Styled.div`
 
 const LinkItem = Styled(Link)`
   flex: 1;
-
+  color: inherit;
+  
   &:last-child {
     text-align: right;
   }
-
 `;
-
 
 const Footer = () => (
   <StyledFooter>

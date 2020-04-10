@@ -25,6 +25,7 @@ const LinkItems = Styled.div`
 `;
 
 const LinkItem = Styled(Link)`
+    color: inherit;
     margin-left: 26px;
 `;
 

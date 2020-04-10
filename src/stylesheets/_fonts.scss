@@ -26,7 +26,16 @@ h1 {
   color: #000000;
 }
 
+h3 {
+  font-family: 'Bitter', serif;
+}
+
 h4 {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
 }
