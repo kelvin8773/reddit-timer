@@ -3,10 +3,10 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 
+import Styled from 'styled-components';
 import Navbar from './navbar';
 import Main from './main';
 import Footer from './footer';
-import Styled from 'styled-components';
 import Theme from './config/theme/theme';
 import GlobalStyle from './config/theme/global';
 

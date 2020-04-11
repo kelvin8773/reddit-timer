@@ -14,18 +14,17 @@ const theme = {
   fonts: {
     primary: 'Montserrat',
     secondary: 'Bitter',
-  }
+  },
 };
 
 const Theme = ({ children }) => (
   <ThemeProvider theme={theme}>
     {children}
   </ThemeProvider>
-)
+);
 
 Theme.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
 export default Theme;
-
