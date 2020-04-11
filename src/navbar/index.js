@@ -37,7 +37,7 @@ const Navbar = () => (
     </Link>
 
     <LinkItems>
-      <LinkItem to={`/search?${SearchJson.default}`}>
+      <LinkItem to={`/search?${SearchJson.defaultSubreddit}`}>
         Search
       </LinkItem>
 
