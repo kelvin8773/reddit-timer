@@ -7,7 +7,8 @@ import Navbar from './navbar';
 import Main from './main';
 import Footer from './footer';
 import Styled from 'styled-components';
-
+import Theme from './config/theme/theme';
+import GlobalStyle from './config/theme/global';
 
 const AppContainer = Styled.div`
   width: 1440px;
@@ -17,15 +18,19 @@ const AppContainer = Styled.div`
 `;
 
 const App = () => (
-  <AppContainer>
-    <Router>
-      <Navbar />
+  <Theme>
+    <GlobalStyle />
+    <AppContainer>
+      <Router>
+        <Navbar />
 
-      <Main />
+        <Main />
 
-      <Footer />
-    </Router>
-  </AppContainer>
+        <Footer />
+      </Router>
+    </AppContainer>
+  </Theme>
+
 );
 
 export default App;

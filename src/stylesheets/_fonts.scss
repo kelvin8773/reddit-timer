@@ -6,36 +6,3 @@
 font-family: 'Montserrat', sans-serif;
 font-family: 'Bitter', serif;
 */
-
-@import './color';
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  font-size: 16px;
-  color: $gray-base;
-}
-
-
-h1 {
-  font-family: 'Bitter', serif;
-  font-size: 38px;
-  color: #000000;
-}
-
-h3 {
-  font-family: 'Bitter', serif;
-}
-
-h4 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-}
-
-a {
-  color: $link-color;
-  text-decoration: none;
-}
