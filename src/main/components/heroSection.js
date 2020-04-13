@@ -43,7 +43,7 @@ const HeroSection = () => (
       Great timing, great results! Find the best time to post on your subreddit.
     </HeroSubTitle>
 
-    <HeroButton to={`/search?${searchJson.defaultSubreddit}`}>
+    <HeroButton to={`/search/${searchJson.defaultSubreddit}`}>
       <Button>
         Show me the best time
       </Button>
@@ -54,7 +54,7 @@ const HeroSection = () => (
       {searchJson.defaultSubreddit}
     </HeroSearchValue>
 
-    <Link to={`/search?${searchJson.defaultSubreddit}`}>
+    <Link to={`/search/${searchJson.defaultSubreddit}`}>
       <img
         src={heatMap}
         alt="heat map"

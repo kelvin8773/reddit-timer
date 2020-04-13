@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  useLocation,
+  useParams,
   Link
 } from 'react-router-dom';
 import Styled from 'styled-components';
@@ -40,22 +40,17 @@ const SearchInput = Styled.input`
 `;
 
 const SearchForm = () => {
-  const location = useLocation();
-  const [subreddit, setSubreddit] = useState('');
-
-  const getParamsFromURL = () => {
-    const { search } = location;
-    setSubreddit(search.slice(1));
-  }
+  const { redditName } = useParams();
+  const [subreddit, setSubreddit] = useState(redditName);
 
   const handleSubmit = e => {
     e.preventDefault();
     setSubreddit(e.target.value);
-  }
+  };
 
   useEffect(() => {
-    getParamsFromURL();
-  }, [location]);
+    setSubreddit(redditName);
+  }, [redditName]);
 
   return (
     <Container>
@@ -70,7 +65,7 @@ const SearchForm = () => {
           value={subreddit}
           onChange={e => setSubreddit(e.target.value)}
         />
-        <Link to={`/search?${subreddit}`}>
+        <Link to={`/search/${subreddit}`}>
           <Button type="submit">Search</Button>
         </Link>
       </FormWrapper>
