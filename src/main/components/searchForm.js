@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+  useLocation,
+  Link
+} from 'react-router-dom';
 import Styled from 'styled-components';
 import Button from './button';
 
@@ -25,26 +29,53 @@ const InputPrefix = Styled.label`
 `;
 
 const SearchInput = Styled.input`
-  width: 370px;
+  width: 336px;
   height: 34px;
-  padding: auto 16px;
+  padding: 0 17px;
+  font-size: 14px;
   border-radius: 2px;
   border: solid 1px${({ theme }) => theme.colors.gray};
   background-color: ${({ theme }) => theme.colors.white};
   margin-right: 10px;
 `;
 
-const SearchForm = () => (
-  <Container>
-    <FormTitle>
-      Find the best time for a subreddit
-    </FormTitle>
-    <FormWrapper>
-      <InputPrefix>r /</InputPrefix>
-      <SearchInput type="text" id="search-input" defaultValue="javascript" />
-      <Button>Search</Button>
-    </FormWrapper>
-  </Container>
-);
+const SearchForm = () => {
+  const location = useLocation();
+  const [subreddit, setSubreddit] = useState('');
+
+  const getParamsFromURL = () => {
+    const { search } = location;
+    setSubreddit(search.slice(1));
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setSubreddit(e.target.value);
+  }
+
+  useEffect(() => {
+    getParamsFromURL();
+  }, [location]);
+
+  return (
+    <Container>
+      <FormTitle>
+        Find the best time for a subreddit
+      </FormTitle>
+      <FormWrapper onSubmit={handleSubmit}>
+        <InputPrefix>r /</InputPrefix>
+        <SearchInput
+          id="search-input"
+          type="text"
+          value={subreddit}
+          onChange={e => setSubreddit(e.target.value)}
+        />
+        <Link to={`/search?${subreddit}`}>
+          <Button type="submit">Search</Button>
+        </Link>
+      </FormWrapper>
+    </Container>
+  )
+};
 
 export default SearchForm;
