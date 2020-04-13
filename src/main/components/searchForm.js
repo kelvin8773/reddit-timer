@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   useParams,
-  Link
+  Link,
 } from 'react-router-dom';
 import Styled from 'styled-components';
 import Button from './button';
@@ -43,7 +43,7 @@ const SearchForm = () => {
   const { redditName } = useParams();
   const [subreddit, setSubreddit] = useState(redditName);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setSubreddit(e.target.value);
   };
@@ -63,14 +63,14 @@ const SearchForm = () => {
           id="search-input"
           type="text"
           value={subreddit}
-          onChange={e => setSubreddit(e.target.value)}
+          onChange={(e) => setSubreddit(e.target.value)}
         />
         <Link to={`/search/${subreddit}`}>
           <Button type="submit">Search</Button>
         </Link>
       </FormWrapper>
     </Container>
-  )
+  );
 };
 
 export default SearchForm;
