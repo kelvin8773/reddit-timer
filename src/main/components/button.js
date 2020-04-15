@@ -1,8 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Styled from 'styled-components';
 
-const StyledButton = Styled.button`
+const Button = Styled.button`
   padding: 14px 16px;
   border-radius: 4px;
   font-size: 14px;
@@ -17,15 +15,5 @@ const StyledButton = Styled.button`
     cursor: pointer;
   }
 `;
-
-const Button = ({ children }) => (
-  <StyledButton>
-    {children}
-  </StyledButton>
-);
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default Button;

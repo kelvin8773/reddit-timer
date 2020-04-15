@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   useParams,
   Link,
@@ -14,18 +14,18 @@ const Container = Styled.div`
 
 const FormWrapper = Styled.form`
   display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const FormTitle = Styled.h1`
-  margin: 25px 0 30px;
+  margin-top: 27px;
+  margin-bottom: 29px;
 `;
 
 const InputPrefix = Styled.label`
   color: #9e9e9e;
   font-size: 18px;
-  margin-right: 9px;
+  margin-right: 10px;
+  line-height: 36px;
 `;
 
 const SearchInput = Styled.input`
@@ -43,21 +43,12 @@ const SearchForm = () => {
   const { redditName } = useParams();
   const [subreddit, setSubreddit] = useState(redditName);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubreddit(e.target.value);
-  };
-
-  useEffect(() => {
-    setSubreddit(redditName);
-  }, [redditName]);
-
   return (
     <Container>
       <FormTitle>
         Find the best time for a subreddit
       </FormTitle>
-      <FormWrapper onSubmit={handleSubmit}>
+      <FormWrapper>
         <InputPrefix>r /</InputPrefix>
         <SearchInput
           id="search-input"
@@ -65,9 +56,12 @@ const SearchForm = () => {
           value={subreddit}
           onChange={(e) => setSubreddit(e.target.value)}
         />
-        <Link to={`/search/${subreddit}`}>
-          <Button type="submit">Search</Button>
-        </Link>
+        <Button
+          as={Link}
+          to={`/search/${subreddit}`}
+        >
+          Search
+        </Button>
       </FormWrapper>
     </Container>
   );
