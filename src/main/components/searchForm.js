@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   useParams,
   useHistory,
-  Link,
 } from 'react-router-dom';
 import Styled from 'styled-components';
 import Button from './button';
@@ -48,7 +47,7 @@ const SearchForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     history.push(`/search/${subreddit}`);
-  }
+  };
 
   return (
     <Container>
