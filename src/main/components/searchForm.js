@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   useParams,
+  useHistory,
   Link,
 } from 'react-router-dom';
 import Styled from 'styled-components';
@@ -42,13 +43,19 @@ const SearchInput = Styled.input`
 const SearchForm = () => {
   const { redditName } = useParams();
   const [subreddit, setSubreddit] = useState(redditName);
+  const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push(`/search/${subreddit}`);
+  }
 
   return (
     <Container>
       <FormTitle>
         Find the best time for a subreddit
       </FormTitle>
-      <FormWrapper>
+      <FormWrapper onSubmit={handleSubmit}>
         <InputPrefix>r /</InputPrefix>
         <SearchInput
           id="search-input"
@@ -57,8 +64,9 @@ const SearchForm = () => {
           onChange={(e) => setSubreddit(e.target.value)}
         />
         <Button
-          as={Link}
-          to={`/search/${subreddit}`}
+          // as={Link}
+          // to={`/search/${subreddit}`}
+          type="submit"
         >
           Search
         </Button>
