@@ -63,8 +63,6 @@ const SearchForm = () => {
           onChange={(e) => setSubreddit(e.target.value)}
         />
         <Button
-          // as={Link}
-          // to={`/search/${subreddit}`}
           type="submit"
         >
           Search
