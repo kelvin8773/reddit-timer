@@ -1,8 +1,10 @@
 import React from 'react';
+import SearchForm from '../components/searchForm';
 
 const Search = () => (
-  <div className="Search">
-    Search Form
+  <div>
+    <SearchForm />
+
   </div>
 );
 

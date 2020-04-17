@@ -8,6 +8,7 @@ const theme = {
     white: '#ffffff',
     primary: '#fdb755',
     grayBase: '#93918f',
+    gray: '#e6e6e6',
     linkColor: '#0087ff',
   },
 
