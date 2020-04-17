@@ -10,7 +10,7 @@ const getPosts = async (subreddit) => {
   const ONE_YEAR_BEFORE = NOW.subtract(1, 'years').unix();
   const QTY = 500;
 
-  const NEW_URL = `${BASE_URL}?subreddit=${subreddit}&after=${ONE_YEAR_BEFORE}&size=${QTY}`;
+  const NEW_URL = `${BASE_URL}?subreddit=${subreddit}&after=${ONE_YEAR_BEFORE}&size=${QTY}}&sort=desc`;
 
   try {
     const response = await axios.get(NEW_URL);

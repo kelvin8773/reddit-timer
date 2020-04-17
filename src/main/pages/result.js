@@ -31,11 +31,11 @@ const Result = () => {
               Posts fetched!
             </h2>
             <p>
-              First Post title is ~
-              {' '}
-              {posts[0].title}
-              {' '}
-              ~.
+              First Post -
+              <a href={posts[0].full_link}>
+                {posts[0].title}
+              </a>
+              .
             </p>
           </Message>
         )}
