@@ -4,9 +4,9 @@ import {
   useHistory,
 } from 'react-router-dom';
 import Styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import Button from './button';
 
-import { useDispatch } from 'react-redux';
 import {
   updatePosts,
   fetchPosts,
@@ -56,11 +56,11 @@ const SearchForm = () => {
     e.preventDefault();
     history.push(`/search/${subreddit}`);
     fetchPosts(subreddit)
-      .then(posts => {
+      .then((posts) => {
         if (posts) {
           dispatch(updatePosts(posts));
         }
-      })
+      });
   };
 
   return (

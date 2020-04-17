@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
-import Spinner from '../components/spinner';
 import { useSelector } from 'react-redux';
+import Spinner from '../components/spinner';
 
 
 const ResultWrapper = Styled.div`
@@ -16,24 +16,31 @@ const Message = Styled.div`
 `;
 
 const Result = () => {
-  const { posts } = useSelector(state => state);
+  const { posts } = useSelector((state) => state);
 
   return (
     <ResultWrapper>
-      {posts.length === 0 ?
-        <Spinner /> : (
+      {posts.length === 0
+        ? <Spinner /> : (
           <Message>
             <h2>
-              Total {posts.length} Posts fetched!
+              Total
+              {' '}
+              {posts.length}
+              {' '}
+              Posts fetched!
             </h2>
             <p>
-              First Post's title is " {posts[0].title} ".
+              First Post title is ~
+              {' '}
+              {posts[0].title}
+              {' '}
+              ~.
             </p>
           </Message>
-        )
-      }
+        )}
     </ResultWrapper>
-  )
+  );
 };
 
 export default Result;
