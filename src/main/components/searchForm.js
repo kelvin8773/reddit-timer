@@ -6,6 +6,13 @@ import {
 import Styled from 'styled-components';
 import Button from './button';
 
+import { useDispatch } from 'react-redux';
+import {
+  updatePosts,
+  fetchPosts,
+} from '../../slices/postsSlice';
+
+
 const Container = Styled.div`
   display: flex;
   flex-direction: column;
@@ -43,10 +50,17 @@ const SearchForm = () => {
   const { redditName } = useParams();
   const [subreddit, setSubreddit] = useState(redditName);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     history.push(`/search/${subreddit}`);
+    fetchPosts(subreddit)
+      .then(posts => {
+        if (posts) {
+          dispatch(updatePosts(posts));
+        }
+      })
   };
 
   return (

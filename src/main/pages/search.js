@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 import SearchForm from '../components/searchForm';
-import Spinner from '../components/spinner';
+import Result from './result';
 
 const PageContainer = Styled.div`
   display: flex;
@@ -9,11 +9,10 @@ const PageContainer = Styled.div`
   align-items: center;
 `;
 
-
 const Search = () => (
   <PageContainer>
     <SearchForm />
-    <Spinner />
+    <Result />
   </PageContainer>
 );
 
