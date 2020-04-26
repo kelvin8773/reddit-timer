@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import getPosts from '../helper/reddit_api';
 
 const slice = createSlice({
   name: 'posts',
@@ -11,11 +10,6 @@ const slice = createSlice({
     },
   },
 });
-
-export async function fetchPosts(subreddit) {
-  const posts = await getPosts(subreddit);
-  return posts;
-}
 
 export const {
   updatePosts,

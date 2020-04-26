@@ -1,19 +1,18 @@
 import axios from 'axios';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 // API Reference - https://reddit-api.readthedocs.io/en/latest/#searching-submissions
 
 const BASE_URL = 'https://api.pushshift.io/reddit/submission/search/';
-const NOW = moment();
 
 const getPosts = async (subreddit) => {
-  const ONE_YEAR_BEFORE = NOW.subtract(1, 'years').unix();
-  const QTY = 500;
+  const oneYearBefore = dayjs().subtract(1, 'years').unix();
+  const numberOfPosts = 500;
 
-  const NEW_URL = `${BASE_URL}?subreddit=${subreddit}&after=${ONE_YEAR_BEFORE}&size=${QTY}}&sort=desc`;
+  const url = `${BASE_URL}?subreddit=${subreddit}&after=${oneYearBefore}&size=${numberOfPosts}&sort=desc`;
 
   try {
-    const response = await axios.get(NEW_URL);
+    const response = await axios.get(url);
     if (response.status === 200) {
       const posts = response.data.data;
       return posts;

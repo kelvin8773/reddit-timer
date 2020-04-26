@@ -8,7 +8,7 @@
     "@testing-library/react": "^10.0.1",
     "@testing-library/user-event": "^10.0.0",
     "axios": "^0.19.2",
-    "moment": "^2.24.0",
+    "dayjs": "^1.8.25",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

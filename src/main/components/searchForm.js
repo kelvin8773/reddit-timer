@@ -9,8 +9,8 @@ import Button from './button';
 
 import {
   updatePosts,
-  fetchPosts,
 } from '../../slices/postsSlice';
+import getPosts from '../../helper/reddit_api';
 
 
 const Container = Styled.div`
@@ -55,7 +55,7 @@ const SearchForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     history.push(`/search/${subreddit}`);
-    fetchPosts(subreddit)
+    getPosts(subreddit)
       .then((posts) => {
         if (posts) {
           dispatch(updatePosts(posts));

@@ -16,7 +16,7 @@ const Message = Styled.div`
 `;
 
 const Result = () => {
-  const { posts } = useSelector((state) => state);
+  const posts = useSelector((state) => state.posts);
 
   return (
     <ResultWrapper>
