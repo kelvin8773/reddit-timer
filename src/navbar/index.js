@@ -6,6 +6,7 @@ import Styled from 'styled-components';
 import { ReactComponent as Logo } from './logo.svg';
 import SearchJson from '../config/search.json';
 
+
 const StyledNavbar = Styled.div`
     height: 100px;
     display: flex;
@@ -30,30 +31,35 @@ const LinkItem = Styled(Link)`
 `;
 
 
-const Navbar = () => (
-  <StyledNavbar>
-    <Link to="/">
-      <StyledLogo />
-    </Link>
+const Navbar = () => {
+  const subReddit = SearchJson.defaultSubreddit;
 
-    <LinkItems>
-      <LinkItem to={`/search/${SearchJson.defaultSubreddit}`}>
-        Search
-      </LinkItem>
+  return (
+    <StyledNavbar>
+      <Link to="/">
+        <StyledLogo />
+      </Link>
 
-      <LinkItem to="/#how-it-work">
-        How it works
-      </LinkItem>
+      <LinkItems>
+        <LinkItem
+          to={`/search/${subReddit}`}
+        >
+          Search
+        </LinkItem>
 
-      <LinkItem to="/#about">
-        About
-      </LinkItem>
+        <LinkItem to="/#how-it-work">
+          How it works
+        </LinkItem>
 
-    </LinkItems>
+        <LinkItem to="/#about">
+          About
+        </LinkItem>
 
-  </StyledNavbar>
+      </LinkItems>
 
+    </StyledNavbar>
+  );
+};
 
-);
 
 export default Navbar;

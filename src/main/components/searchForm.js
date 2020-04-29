@@ -4,13 +4,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import Styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import Button from './button';
-
-import {
-  updatePosts,
-} from '../../slices/postsSlice';
-import getPosts from '../../helper/reddit_api';
 
 
 const Container = Styled.div`
@@ -50,17 +44,10 @@ const SearchForm = () => {
   const { redditName } = useParams();
   const [subreddit, setSubreddit] = useState(redditName);
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     history.push(`/search/${subreddit}`);
-    getPosts(subreddit)
-      .then((posts) => {
-        if (posts) {
-          dispatch(updatePosts(posts));
-        }
-      });
   };
 
   return (
