@@ -13,9 +13,8 @@ const getPosts = async (subreddit) => {
 
   try {
     const response = await axios.get(url);
-    if (response.status === 200) {
-      const posts = response.data.data;
-      if (posts.length > 0) return posts;
+    if (response.status === 200 && response.data.data.length > 0) {
+      return response.data.data;
     }
     throw new Error('No such subreddit!');
   } catch (error) {
