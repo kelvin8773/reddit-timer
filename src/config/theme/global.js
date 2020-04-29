@@ -20,8 +20,14 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.black};
   }
 
+  h2 {
+    font-family:  ${({ theme }) => theme.fonts.secondary};
+    font-size: 30px;
+  }
+
   h3 {
     font-family:  ${({ theme }) => theme.fonts.secondary};
+    font-size: 24px;
   }
 
   h4 {

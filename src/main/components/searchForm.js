@@ -6,6 +6,7 @@ import {
 import Styled from 'styled-components';
 import Button from './button';
 
+
 const Container = Styled.div`
   display: flex;
   flex-direction: column;
@@ -63,8 +64,6 @@ const SearchForm = () => {
           onChange={(e) => setSubreddit(e.target.value)}
         />
         <Button
-          // as={Link}
-          // to={`/search/${subreddit}`}
           type="submit"
         >
           Search

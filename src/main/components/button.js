@@ -10,6 +10,7 @@ const Button = Styled.button`
   color: #ffffff;
   text-transform: uppercase;
   border: none;
+  outline: none;
   &:hover {
     background: #fcc755;
     cursor: pointer;
