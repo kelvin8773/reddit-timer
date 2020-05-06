@@ -22,5 +22,4 @@ const getPosts = async (subreddit) => {
   }
 };
 
-
 export default getPosts;

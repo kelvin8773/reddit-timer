@@ -9,6 +9,7 @@ import { updatePosts } from '../../slices/postsSlice';
 import getPosts from '../../helper/redditAPI';
 
 import Spinner from './spinner';
+import HeatMap from './heatMap';
 
 const ResultWrapper = Styled.div`
   display: flex;
@@ -24,8 +25,8 @@ const MessageWrapper = Styled.div`
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
-
   const dispatch = useDispatch();
+
   const posts = useSelector((state) => state.posts);
   const { redditName } = useParams();
 
@@ -43,14 +44,14 @@ const Result = () => {
         dispatch(updatePosts([]));
         setLoading(false);
       });
-  }, [redditName]);
+  }, [redditName, dispatch]);
 
 
   return (
     <ResultWrapper>
       {loading && <Spinner />}
       {errorMsg && <MessageWrapper>{errorMsg}</MessageWrapper>}
-      {posts.length > 0
+      {(posts.length > 0 && !loading)
         && (
           <MessageWrapper>
             {' '}
@@ -59,6 +60,7 @@ const Result = () => {
             Posts fetched!
           </MessageWrapper>
         )}
+      <HeatMap />
     </ResultWrapper>
   );
 };
