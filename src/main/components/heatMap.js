@@ -1,5 +1,10 @@
 import React from 'react';
 // import Styled from 'styled-components';
+import {
+  useSelector,
+} from 'react-redux';
+import dayjs from 'dayjs';
+
 
 import makeID from '../../helper/makeID';
 
@@ -42,7 +47,19 @@ const HeatMap = () => {
   const row = 7;
   const col = 24;
   const mapData = Array(row).fill().map(() => Array(col).fill(0));
+  const posts = useSelector((state) => state.posts);
+  const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+  const getPostCount = (posts) => {
+    for (let i = 0; i < posts.length - 1; i++) {
+      const time = dayjs.unix(posts[i].created_utc);
+      const dayOfWeek = time.day();
+      const timeSlot = time.hour();
+      mapData[dayOfWeek][timeSlot] += 1;
+    }
+  };
+
+  getPostCount(posts);
 
   return (
     <div>
@@ -73,6 +90,9 @@ const HeatMap = () => {
           }
         </tbody>
       </table>
+      <p style={{ 'textAlign': 'center' }}>
+        All times are show in your timezone: <strong>{localTimezone}</strong>
+      </p>
     </div>
   );
 
