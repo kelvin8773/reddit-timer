@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import {
-  useSelector,
   useDispatch,
 } from 'react-redux';
 import { updatePosts } from '../../slices/postsSlice';
@@ -27,7 +26,6 @@ const Result = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const dispatch = useDispatch();
 
-  const posts = useSelector((state) => state.posts);
   const { redditName } = useParams();
 
   useEffect(() => {
@@ -46,21 +44,11 @@ const Result = () => {
       });
   }, [redditName, dispatch]);
 
-
   return (
     <ResultWrapper>
       {loading && <Spinner />}
       {errorMsg && <MessageWrapper>{errorMsg}</MessageWrapper>}
-      {(posts.length > 0 && !loading)
-        && (
-          <MessageWrapper>
-            {' '}
-            {posts.length}
-            {' '}
-            Posts fetched!
-          </MessageWrapper>
-        )}
-      <HeatMap />
+      {!errorMsg && !loading && <HeatMap />}
     </ResultWrapper>
   );
 };
