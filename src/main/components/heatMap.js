@@ -1,5 +1,5 @@
 import React from 'react';
-// import Styled from 'styled-components';
+import Styled from 'styled-components';
 import {
   useSelector,
 } from 'react-redux';
@@ -14,12 +14,16 @@ import makeID from '../../helper/makeID';
 const HeatMap = () => {
   const posts = useSelector((state) => state.posts);
   const getHeatMapData = (posts) => {
-    const result = Array(7).fill().map(() => Array(24).fill(0));
-    for (let i = 0; i < posts.length - 1; i++) {
+    const result = new Array(7).fill()
+      .map(() => new Array(24).fill()
+        .map(() => new Array()));
+
+
+    for (let i = 0; i < posts.length; i++) {
       const time = dayjs.unix(posts[i].created_utc);
       const dayOfWeek = time.day();
       const timeSlot = time.hour();
-      result[dayOfWeek][timeSlot] += 1;
+      result[dayOfWeek][timeSlot].push(posts[i]);
     }
     return result;
   };
@@ -29,25 +33,27 @@ const HeatMap = () => {
 
   return (
     <div>
+      <div style={{ 'display': 'flex', 'justifyContent': 'flex-end' }}>
+        {
+          COL_LABELS.map((label) =>
+            <span key={label + "-" + makeID(4)} >
+              {label}
+            </span>
+          )
+        }
+      </div>
       <table>
-        <thead>
-          <tr>
-            {
-              COL_LABELS.map((label) =>
-                <th key={label + "-" + makeID(4)}>{label}</th>
-              )
-            }
-          </tr>
-        </thead>
+
         <tbody>
           {
             ROW_LABELS.map((label) => {
               const idx = ROW_LABELS.indexOf(label);
               return (<tr key={label + "-" + makeID(4)}>
                 <td>{label}</td>
-                {heatMapData[idx].map((num) =>
-                  <td key={makeID(8)} style={{ 'textAlign': 'center' }}>
-                    {num}
+                {heatMapData[idx].map((posts) =>
+                  <td key={makeID(8)}
+                    style={{ 'textAlign': 'center', 'width': '40px' }}>
+                    {posts.length}
                   </td>
                 )}
               </tr>
