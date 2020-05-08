@@ -14,9 +14,7 @@ import makeID from '../../helper/makeID';
 const HeatMap = () => {
   const posts = useSelector((state) => state.posts);
   const getHeatMapData = (posts) => {
-    const result = new Array(7).fill()
-      .map(() => new Array(24).fill()
-        .map(() => new Array()));
+    const result = new Array(7).fill().map(() => new Array(24).fill().map(() => new Array()));
 
 
     for (let i = 0; i < posts.length; i++) {
@@ -47,12 +45,14 @@ const HeatMap = () => {
         <tbody>
           {
             ROW_LABELS.map((label) => {
-              const idx = ROW_LABELS.indexOf(label);
+              const dayOfWeek = ROW_LABELS.indexOf(label);
               return (<tr key={label + "-" + makeID(4)}>
                 <td>{label}</td>
-                {heatMapData[idx].map((posts) =>
+                {heatMapData[dayOfWeek].map((posts, timeSlot) =>
                   <td key={makeID(8)}
-                    style={{ 'textAlign': 'center', 'width': '40px' }}>
+                    style={{ 'textAlign': 'center', 'width': '40px' }}
+                    data={dayOfWeek * 100 + timeSlot}
+                  >
                     {posts.length}
                   </td>
                 )}
