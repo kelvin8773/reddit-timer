@@ -21,3 +21,17 @@ export const COL_LABELS = [
   '8:00pm',
   '10:00pm',
 ];
+
+export const HEATMAP_COLORS = [
+  '#e0e592',
+  '#aed396',
+  '#a9d194',
+  '#a0ce93',
+  '#99cd94',
+  '#8cc894',
+  '#5eb391',
+  '#5db492',
+  '#5cb391',
+  '#5aad8c',
+  '#3984a3',
+]
