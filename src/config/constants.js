@@ -34,4 +34,4 @@ export const HEATMAP_COLORS = [
   '#5cb391',
   '#5aad8c',
   '#3984a3',
-]
+];

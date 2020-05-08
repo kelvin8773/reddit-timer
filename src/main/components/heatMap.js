@@ -4,12 +4,12 @@ import {
   useSelector,
 } from 'react-redux';
 
+import dayjs from 'dayjs';
 import {
   ROW_LABELS,
   COL_LABELS,
   HEATMAP_COLORS,
 } from '../../config/constants';
-import dayjs from 'dayjs';
 import makeID from '../../helper/makeID';
 
 const HeatMapContainter = Styled.div`
@@ -62,37 +62,37 @@ const HeatMapCell = Styled.td`
   color: white;
   text-align: center;
   background-color: 
-    ${props => HEATMAP_COLORS[props.postNumber] || HEATMAP_COLORS[10]};
+    ${(props) => HEATMAP_COLORS[props.postNumber] || HEATMAP_COLORS[10]};
   &:hover {
     cursor: pointer;
-    border: 1px solid  ${props => props.theme.colors.grayBase};
+    border: 1px solid  ${(props) => props.theme.colors.grayBase};
     width:38px;
     max-height:38px;
   }
-  ${props => props.clicked === props.data ?
-    `border: 1px solid ${props.theme.colors.grayBase};
+  ${(props) => (props.clicked === props.data
+    ? `border: 1px solid ${props.theme.colors.grayBase};
     width: 38px;
     max-height: 38px;`
-    : ``}
+    : '')}
 `;
 
 const HeatMapTimezone = Styled.div`
   margin-top: 12px;
   font-size: 14px;
   text-align: center;
-  color: ${props => props.theme.colors.grayBase};
+  color: ${(props) => props.theme.colors.grayBase};
 `;
 
 const HeatMap = () => {
   const [clicked, setClicked] = useState(-1);
   const posts = useSelector((state) => state.posts);
-  const getHeatMapData = (posts) => {
+  const getHeatMapData = (data) => {
     const result = new Array(7).fill().map(() => new Array(24).fill().map(() => []));
-    for (let i = 0; i < posts.length; i++) {
-      const time = dayjs.unix(posts[i].created_utc);
+    for (let i = 0; i < data.length; i += 1) {
+      const time = dayjs.unix(data[i].created_utc);
       const dayOfWeek = time.day();
       const timeSlot = time.hour();
-      result[dayOfWeek][timeSlot].push(posts[i]);
+      result[dayOfWeek][timeSlot].push(data[i]);
     }
     return result;
   };
@@ -102,13 +102,13 @@ const HeatMap = () => {
 
   return (
     <HeatMapContainter>
-      <HeatMapCoLabels >
+      <HeatMapCoLabels>
         {
-          COL_LABELS.map((label) =>
-            <HeapMapCoLabel key={label + "-" + makeID(4)} >
+          COL_LABELS.map((label) => (
+            <HeapMapCoLabel key={`${label}-${makeID(4)}`}>
               {label}
             </HeapMapCoLabel>
-          )
+          ))
         }
       </HeatMapCoLabels>
 
@@ -117,31 +117,33 @@ const HeatMap = () => {
           {
             ROW_LABELS.map((label) => {
               const dayOfWeek = ROW_LABELS.indexOf(label);
-              return (<tr key={label + "-" + makeID(4)}>
-                <HeatMapRowLabel>{label}</HeatMapRowLabel>
-                {heatMapData[dayOfWeek].map((posts, timeSlot) =>
-                  <HeatMapCell key={makeID(8)}
-                    data={dayOfWeek * 100 + timeSlot}
-                    postNumber={posts.length}
-                    clicked={clicked}
-                    onClick={() => setClicked(dayOfWeek * 100 + timeSlot)}
-                  >
-                    {posts.length}
-                  </HeatMapCell>
-                )}
-              </tr>
-              )
+              return (
+                <tr key={`${label}-${makeID(4)}`}>
+                  <HeatMapRowLabel>{label}</HeatMapRowLabel>
+                  {heatMapData[dayOfWeek].map((data, timeSlot) => (
+                    <HeatMapCell
+                      key={makeID(8)}
+                      data={dayOfWeek * 100 + timeSlot}
+                      postNumber={data.length}
+                      clicked={clicked}
+                      onClick={() => setClicked(dayOfWeek * 100 + timeSlot)}
+                    >
+                      {data.length}
+                    </HeatMapCell>
+                  ))}
+                </tr>
+              );
             })
           }
         </tbody>
       </table>
 
       <HeatMapTimezone>
-        All times are shown in your timezone:<strong>{localTimezone}</strong>
+        All times are shown in your timezone:
+        <strong>{localTimezone}</strong>
       </HeatMapTimezone>
     </HeatMapContainter>
   );
-
-}
+};
 
 export default HeatMap;
