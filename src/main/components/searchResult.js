@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import {
   useDispatch,
 } from 'react-redux';
+import dayjs from 'dayjs';
+
 import { updatePosts } from '../../slices/postsSlice';
 import getPosts from '../../helper/redditAPI';
 
@@ -21,6 +23,17 @@ const MessageWrapper = Styled.div`
   text-align: center;
 `;
 
+const convertToHeatMapData = (data) => {
+  const result = new Array(7).fill().map(() => new Array(24).fill().map(() => []));
+  for (let i = 0; i < data.length; i += 1) {
+    const time = dayjs.unix(data[i].created_utc);
+    const dayOfWeek = time.day();
+    const timeSlot = time.hour();
+    result[dayOfWeek][timeSlot].push(data[i]);
+  }
+  return result;
+};
+
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
@@ -34,7 +47,8 @@ const Result = () => {
 
     getPosts(redditName)
       .then((res) => {
-        dispatch(updatePosts(res));
+        const posts = convertToHeatMapData(res);
+        dispatch(updatePosts(posts));
         setLoading(false);
       })
       .catch((error) => {

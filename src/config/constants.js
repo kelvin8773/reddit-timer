@@ -1,13 +1,14 @@
-export const ROW_LABELS = [
+export const HEATMAP_WEEKDAY_LABELS = [
   'Sunday',
   'Monday',
   'Tuesday',
-  'Wendesday',
+  'Wednesday',
   'Thursday',
   'Friday',
-  'Saturday'];
+  'Saturday',
+];
 
-export const COL_LABELS = [
+export const HEATMAP_HOUR_LABELS = [
   '12:00am',
   '2:00am',
   '4:00am',
