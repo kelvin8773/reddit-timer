@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   useParams,
   useHistory,
@@ -49,6 +49,10 @@ const SearchForm = () => {
     e.preventDefault();
     history.push(`/search/${subreddit}`);
   };
+
+  useEffect(() => {
+    setSubreddit(redditName);
+  }, [redditName]);
 
   return (
     <Container>

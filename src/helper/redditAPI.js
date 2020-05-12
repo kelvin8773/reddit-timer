@@ -9,7 +9,7 @@ const getPosts = async (subreddit) => {
   const oneYearBefore = dayjs().subtract(1, 'years').unix();
   const numberOfPosts = 500;
 
-  const url = `${BASE_URL}?subreddit=${subreddit}&after=${oneYearBefore}&size=${numberOfPosts}&sort=desc`;
+  const url = `${BASE_URL}?subreddit=${subreddit}&after=${oneYearBefore}&size=${numberOfPosts}&sort=desc&sort_type=score`;
 
   try {
     const response = await axios.get(url);
@@ -21,6 +21,5 @@ const getPosts = async (subreddit) => {
     throw new Error(error.message);
   }
 };
-
 
 export default getPosts;

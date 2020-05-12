@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import {
-  useSelector,
   useDispatch,
 } from 'react-redux';
+import dayjs from 'dayjs';
+
 import { updatePosts } from '../../slices/postsSlice';
 import getPosts from '../../helper/redditAPI';
 
 import Spinner from './spinner';
+import HeatMap from './heatMap';
 
 const ResultWrapper = Styled.div`
   display: flex;
@@ -21,12 +23,22 @@ const MessageWrapper = Styled.div`
   text-align: center;
 `;
 
+const convertToHeatMapData = (data) => {
+  const result = new Array(7).fill().map(() => new Array(24).fill().map(() => []));
+  for (let i = 0; i < data.length; i += 1) {
+    const time = dayjs.unix(data[i].created_utc);
+    const dayOfWeek = time.day();
+    const timeSlot = time.hour();
+    result[dayOfWeek][timeSlot].push(data[i]);
+  }
+  return result;
+};
+
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
-
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
+
   const { redditName } = useParams();
 
   useEffect(() => {
@@ -35,7 +47,8 @@ const Result = () => {
 
     getPosts(redditName)
       .then((res) => {
-        dispatch(updatePosts(res));
+        const posts = convertToHeatMapData(res);
+        dispatch(updatePosts(posts));
         setLoading(false);
       })
       .catch((error) => {
@@ -43,22 +56,13 @@ const Result = () => {
         dispatch(updatePosts([]));
         setLoading(false);
       });
-  }, [redditName]);
-
+  }, [redditName, dispatch]);
 
   return (
     <ResultWrapper>
       {loading && <Spinner />}
       {errorMsg && <MessageWrapper>{errorMsg}</MessageWrapper>}
-      {posts.length > 0
-        && (
-          <MessageWrapper>
-            {' '}
-            {posts.length}
-            {' '}
-            Posts fetched!
-          </MessageWrapper>
-        )}
+      {!errorMsg && !loading && <HeatMap />}
     </ResultWrapper>
   );
 };
