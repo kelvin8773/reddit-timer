@@ -36,3 +36,5 @@ export const HEATMAP_COLORS = [
   '#5aad8c',
   '#3984a3',
 ];
+
+export const REDDIT_USER_BASE_URL = 'https://www.reddit.com/user/';
