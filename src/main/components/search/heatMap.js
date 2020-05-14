@@ -8,7 +8,7 @@ import {
   HEATMAP_WEEKDAY_LABELS,
   HEATMAP_HOUR_LABELS,
   HEATMAP_COLORS,
-} from '../../config/constants';
+} from '../../../config/constants';
 
 const HeatMapContainter = Styled.div`
   margin-top: 61px;
