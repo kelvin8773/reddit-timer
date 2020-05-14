@@ -88,8 +88,8 @@ const HeatMap = () => {
   const posts = useSelector((state) => state.posts);
   const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const getIndex = (weekday, hour) => weekday * 100 + hour;
-  const selectedPosts = clickedIndex ?
-    posts[Math.floor(clickedIndex / 100)][clickedIndex % 100] : [];
+  const selectedPosts = clickedIndex
+    ? posts[Math.floor(clickedIndex / 100)][clickedIndex % 100] : [];
 
   return (
     <HeatMapContainter>

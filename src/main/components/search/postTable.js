@@ -7,7 +7,7 @@ import { REDDIT_USER_BASE_URL } from '../../../config/constants';
 const TableTitle = Styled.h2`
   font-family: 'Bitter', serif;
   font-size: 24px;
-  color: ${ ({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const TableWrapper = Styled.table`
@@ -24,7 +24,7 @@ const TableHeader = Styled.th`
   font-size: 14px;
   font-weight: 600;
   border: solid 1px #dddddd;
-  color: ${ ({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
   text-align: start;
   padding-left: 12px;
   padding-right: 10px;
@@ -39,7 +39,7 @@ const TableData = Styled.td`
   font-weight: 500;
   border: solid 1px #dddddd;
   padding-left: 12px;
-  color: ${ ({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
   vertical-align: middle !important;
   
   :first-child {
@@ -55,7 +55,7 @@ const TableData = Styled.td`
   :first-child, 
   :last-child
   {
-    color: ${ ({ theme }) => theme.colors.linkColor};
+    color: ${({ theme }) => theme.colors.linkColor};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -64,8 +64,8 @@ const TableData = Styled.td`
 `;
 
 const PostTable = ({ posts }) => {
-  const getMinutes = (utc) => dayjs.unix(utc).minute();
-  const sortedPosts = [...posts].sort((a, b) => getMinutes(a.created_utc) - getMinutes(b.created_utc));
+  const getMin = (utc) => dayjs.unix(utc).minute();
+  const sortedPosts = [...posts].sort((a, b) => getMin(a.created_utc) - getMin(b.created_utc));
 
   return (
     <div>
@@ -82,7 +82,7 @@ const PostTable = ({ posts }) => {
         </thead>
         <tbody>
           {
-            sortedPosts.map(post => (
+            sortedPosts.map((post) => (
               <tr key={post.id}>
                 <TableData>
                   <a
@@ -100,18 +100,18 @@ const PostTable = ({ posts }) => {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={REDDIT_USER_BASE_URL + post.author}>
+                    href={REDDIT_USER_BASE_URL + post.author}
+                  >
                     {post.author}
                   </a>
                 </TableData>
               </tr>
-            )
-            )
+            ))
           }
         </tbody>
       </TableWrapper>
     </div>
-  )
+  );
 };
 
 PostTable.propTypes = {
