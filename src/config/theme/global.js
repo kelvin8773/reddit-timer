@@ -10,14 +10,13 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    font-size: 16px;
-    color: ${({ theme }) => theme.colors.grayBase};
+    font-size: 14px;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   h1 {
     font-family:  ${({ theme }) => theme.fonts.secondary};
     font-size: 38px;
-    color: ${({ theme }) => theme.colors.black};
   }
 
   h2 {

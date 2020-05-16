@@ -10,6 +10,12 @@ import {
   HEATMAP_COLORS,
 } from '../../../config/constants';
 
+import {
+  getIndex,
+  getDay,
+  getHour,
+} from '../../../helper/convert';
+
 import PostTable from './postTable';
 
 const HeatMapContainter = Styled.div`
@@ -87,9 +93,8 @@ const HeatMap = () => {
   const [clickedIndex, setClickedIndex] = useState(null);
   const posts = useSelector((state) => state.posts);
   const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const getIndex = (weekday, hour) => weekday * 100 + hour;
   const selectedPosts = clickedIndex
-    ? posts[Math.floor(clickedIndex / 100)][clickedIndex % 100] : [];
+    ? posts[getDay(clickedIndex)][getHour(clickedIndex)] : [];
 
   return (
     <HeatMapContainter>

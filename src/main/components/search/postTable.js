@@ -4,51 +4,42 @@ import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { REDDIT_USER_BASE_URL } from '../../../config/constants';
 
-const TableTitle = Styled.h2`
-  font-family: 'Bitter', serif;
-  font-size: 24px;
-  color: ${({ theme }) => theme.colors.black};
-`;
-
 const TableWrapper = Styled.table`
   box-sizing: border-box;
   width: 786px;
-  margin-top: 12px;
+  margin: 12px auto 0;
   border: solid 1px #dddddd;
-  font-size: 14px;
 `;
 
 const TableHeader = Styled.th`
   box-sizing: border-box;
   height: 35px;
-  font-size: 14px;
   font-weight: 600;
   border: solid 1px #dddddd;
-  color: ${({ theme }) => theme.colors.black};
   text-align: start;
   padding-left: 12px;
   padding-right: 10px;
-  vertical-align: middle !important;
-  
+  vertical-align: middle;
 `;
 
 const TableData = Styled.td`
   box-sizing: border-box;
   height: 34px;
-  font-size: 14px;
   font-weight: 500;
   border: solid 1px #dddddd;
   padding-left: 12px;
   color: ${({ theme }) => theme.colors.black};
-  vertical-align: middle !important;
+  vertical-align: middle;
   
   :first-child {
     max-width: 373px;
+    width: 373px;
     padding-right: 17px;
   };
 
   :last-child {
     max-width: 129px;
+    width: 129px;
     padding: 0 14px 0 11px;
   }
 
@@ -69,7 +60,7 @@ const PostTable = ({ posts }) => {
 
   return (
     <div>
-      <TableTitle>Posts</TableTitle>
+      <h3>Posts</h3>
       <TableWrapper>
         <thead>
           <tr>

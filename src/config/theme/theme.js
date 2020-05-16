@@ -7,6 +7,7 @@ const theme = {
     black: '#000000',
     white: '#ffffff',
     primary: '#fdb755',
+    brownishGrey: '#636363',
     grayBase: '#93918f',
     gray: '#e6e6e6',
     linkColor: '#0087ff',
