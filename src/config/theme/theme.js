@@ -16,6 +16,7 @@ const theme = {
   fonts: {
     primary: 'Montserrat',
     secondary: 'Bitter',
+    small: '14px',
   },
 };
 

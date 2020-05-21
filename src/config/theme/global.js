@@ -10,28 +10,32 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    font-size: 14px;
-    color: ${({ theme }) => theme.colors.black};
+    font-size: 16px;
+    color: ${({ theme }) => theme.colors.grayBase};
   }
 
   h1 {
     font-family:  ${({ theme }) => theme.fonts.secondary};
     font-size: 38px;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   h2 {
     font-family:  ${({ theme }) => theme.fonts.secondary};
     font-size: 30px;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   h3 {
     font-family:  ${({ theme }) => theme.fonts.secondary};
     font-size: 24px;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   h4 {
     font-family:  ${({ theme }) => theme.fonts.primary};
     font-size: 16px;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   a {

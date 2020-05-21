@@ -9,6 +9,8 @@ const TableWrapper = Styled.table`
   width: 786px;
   margin: 12px auto 0;
   border: solid 1px #dddddd;
+  Font-size: ${({ theme }) => theme.fonts.small};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const TableHeader = Styled.th`
@@ -25,10 +27,9 @@ const TableHeader = Styled.th`
 const TableData = Styled.td`
   box-sizing: border-box;
   height: 34px;
-  font-weight: 500;
+  font-weight: 400;
   border: solid 1px #dddddd;
   padding-left: 12px;
-  color: ${({ theme }) => theme.colors.black};
   vertical-align: middle;
   
   :first-child {
