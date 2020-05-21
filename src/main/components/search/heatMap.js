@@ -93,7 +93,7 @@ const HeatMap = () => {
   const [clickedIndex, setClickedIndex] = useState(null);
   const posts = useSelector((state) => state.posts);
   const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const selectedPosts = clickedIndex
+  const selectedPosts = clickedIndex !== null
     ? posts[getDay(clickedIndex)][getHour(clickedIndex)] : [];
 
   return (
