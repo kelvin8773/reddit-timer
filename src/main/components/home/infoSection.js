@@ -33,7 +33,7 @@ const InfoLine = Styled.div`
 
 const InfoSection = () => (
   <Section>
-    <Info id="how-it-works">
+    <Info id="how">
       <HeadLine>
         How it works
       </HeadLine>
