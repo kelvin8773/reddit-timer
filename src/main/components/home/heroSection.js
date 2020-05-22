@@ -22,6 +22,7 @@ const HeroTitle = Styled.h1`
 
 const HeroSubTitle = Styled.h4`
   margin: 0 auto 46px;
+  color: ${({ theme }) => theme.colors.grayBase};
 `;
 
 const HeroButton = Styled(Link)`
