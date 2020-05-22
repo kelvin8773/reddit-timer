@@ -9,7 +9,7 @@ const TableWrapper = Styled.table`
   width: 786px;
   margin: 12px auto 0;
   border: solid 1px #dddddd;
-  Font-size: ${({ theme }) => theme.fonts.small};
+  font-size: ${({ theme }) => theme.fonts.small};
   color: ${({ theme }) => theme.colors.black};
 `;
 
