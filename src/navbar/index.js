@@ -26,8 +26,9 @@ const LinkItems = Styled.div`
 `;
 
 const LinkItem = Styled(Link)`
-    color: inherit;
+    color: ${({ theme }) => theme.colors.brownishGrey};;
     margin-left: 26px;
+    font-size: 16px;
 `;
 
 

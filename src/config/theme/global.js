@@ -23,16 +23,19 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     font-family:  ${({ theme }) => theme.fonts.secondary};
     font-size: 30px;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   h3 {
     font-family:  ${({ theme }) => theme.fonts.secondary};
     font-size: 24px;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   h4 {
     font-family:  ${({ theme }) => theme.fonts.primary};
     font-size: 16px;
+    color: ${({ theme }) => theme.colors.black};
   }
 
   a {

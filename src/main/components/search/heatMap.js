@@ -8,7 +8,15 @@ import {
   HEATMAP_WEEKDAY_LABELS,
   HEATMAP_HOUR_LABELS,
   HEATMAP_COLORS,
-} from '../../config/constants';
+} from '../../../config/constants';
+
+import {
+  getIndex,
+  getDay,
+  getHour,
+} from '../../../helper/convert';
+
+import PostTable from './postTable';
 
 const HeatMapContainter = Styled.div`
   margin-top: 61px;
@@ -75,18 +83,18 @@ const HeatMapCell = Styled.td`
 
 const HeatMapTimezone = Styled.div`
   margin-top: 12px;
+  margin-bottom: 28px;
   font-size: 14px;
   text-align: center;
   color: ${(props) => props.theme.colors.grayBase};
 `;
 
-
 const HeatMap = () => {
   const [clickedIndex, setClickedIndex] = useState(null);
   const posts = useSelector((state) => state.posts);
   const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-  const getIndex = (weekday, hour) => weekday * 100 + hour;
+  const selectedPosts = clickedIndex !== null
+    ? posts[getDay(clickedIndex)][getHour(clickedIndex)] : [];
 
   return (
     <HeatMapContainter>
@@ -126,6 +134,9 @@ const HeatMap = () => {
         All times are shown in your timezone:&nbsp;
         <strong>{localTimezone}</strong>
       </HeatMapTimezone>
+
+      {selectedPosts.length !== 0 && <PostTable posts={selectedPosts} />}
+
     </HeatMapContainter>
   );
 };

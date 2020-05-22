@@ -3,9 +3,9 @@ import {
   Link,
 } from 'react-router-dom';
 import Styled from 'styled-components';
-import Button from './button';
+import Button from '../button';
 import heatMap from './table.png';
-import searchJson from '../../config/search.json';
+import searchJson from '../../../config/search.json';
 
 const Hero = Styled.div`
   margin: 0 auto 130px;
@@ -22,6 +22,7 @@ const HeroTitle = Styled.h1`
 
 const HeroSubTitle = Styled.h4`
   margin: 0 auto 46px;
+  color: ${({ theme }) => theme.colors.grayBase};
 `;
 
 const HeroButton = Styled(Link)`

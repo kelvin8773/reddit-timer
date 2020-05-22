@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
-import SearchForm from '../components/searchForm';
-import Result from '../components/searchResult';
+import SearchForm from '../components/search/searchForm';
+import Result from '../components/search/searchResult';
 
 const PageContainer = Styled.div`
   display: flex;
