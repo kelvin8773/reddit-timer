@@ -45,7 +45,7 @@ const Navbar = () => {
           Search
         </LinkItem>
 
-        <LinkItem smooth to="/#how">
+        <LinkItem smooth to="/#howItWorks">
           How it works
         </LinkItem>
 
