@@ -6,8 +6,8 @@ import {
 } from 'react-redux';
 import dayjs from 'dayjs';
 
-import { updatePosts } from '../../../slices/postsSlice';
-import getPosts from '../../../helper/redditAPI';
+import { updatePosts } from '../../redux/postsSlice';
+import getPosts from '../../helper/redditAPI';
 
 import Spinner from './spinner';
 import HeatMap from './heatMap';

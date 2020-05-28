@@ -2,7 +2,7 @@ import React from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import Styled from 'styled-components';
 import { ReactComponent as Logo } from './logo.svg';
-import SearchJson from '../config/search.json';
+import SearchJson from '../../helper/search.json';
 
 const StyledNavbar = Styled.div`
     height: 100px;

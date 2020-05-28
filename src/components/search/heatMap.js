@@ -8,13 +8,13 @@ import {
   HEATMAP_WEEKDAY_LABELS,
   HEATMAP_HOUR_LABELS,
   HEATMAP_COLORS,
-} from '../../../config/constants';
+} from '../../helper/constants';
 
 import {
   getIndex,
   getDay,
   getHour,
-} from '../../../helper/convert';
+} from '../../helper/convert';
 
 import PostTable from './postTable';
 
