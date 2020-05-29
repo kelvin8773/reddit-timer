@@ -3,7 +3,7 @@ import {
   Link,
 } from 'react-router-dom';
 import Styled from 'styled-components';
-import Button from '../button/index';
+import Button from '../button';
 import heatMap from './table.png';
 import searchJson from '../../helper/search.json';
 
