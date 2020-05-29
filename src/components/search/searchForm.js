@@ -4,7 +4,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import Styled from 'styled-components';
-import Button from '../button';
+import Button from '../button/index';
 
 
 const Container = Styled.div`
