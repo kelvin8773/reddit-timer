@@ -14,26 +14,34 @@
 </p>
 
 [![App Home Screen](./docs/reddit_timer_home.png "Home Screen")](https://reddittimer.netlify.app/)
-> Use a heatmap to show user what is the best time post in a given subreddit.
+> Use a heatmap to show users what is the best time to post in a given subreddit.
 
 [![App Search Screen](./docs/reddit_timer_search_reactjs.png "Search Reatjs SubReddit")](https://reddittimer.netlify.app/search/reactjs)
 > Search In progress
 
-## About This Project (To Read)
+## About This Project
 
-I have done this project with a course from [ooloo.io](https://ooloo.io/), which I build up the app with a given design from [Zeplin](https://zeplin.io/), manage project progress at [Asana](https://app.asana.com/), and iterate every task on github with line by line code review from a senior developer [Johannes](https://jkettmann.com/author/johannes/), all of these are done in a way to mimic how an actual project is being done in a real world environment. 
+I implemented this project in the context of a course at [ooloo.io](https://ooloo.io/). This course mimics a professional real-world development environment.
 
-Unlike most online courses out there, this course is focused on learning experiences rather than technical stacks.
+Designs were provided via [Zeplin](https://zeplin.io/). The project was split into small tasks using [Asana](https://app.asana.com/) as a project management tool. I created a pull request for every task. The code was reviewed line by line by [Johannes](https://jkettmann.com/author/johannes/), a senior developer.
 
-I was free to choose whatever technical stacks, packages, and coding styles to finish the project( It does limit to React Framework only though). As long as I meet the criteria of a given task. 
+In this project I have been exposed to many practical techniques that I wouldn't have learned otherwise. Examples as following but not limit to: 
 
-Of course, there is [advice](https://github.com/ooloo-io/reddit-timer-kelvin8773/pull/11#pullrequestreview-412073827) would give to follow the best practices when I finished each task. That is how I can learn and evolved my knowledge of FrontEnd rapidly. 
+* **Creating pixel-perfect designs**
+* **Planning and implementing a [complex UI component](https://github.com/ooloo-io/reddit-timer-kelvin8773/blob/master/src/main/components/search/heatMap.js#L92)**
+* **[Implement data fetching with error handling](https://github.com/ooloo-io/reddit-timer-kelvin8773/blob/master/src/main/components/search/searchResult.js#L37)**
+* **Debugging inside an IDE**
+* **[Writing integration tests](https://dev.to/jkettmann/inside-a-dev-s-mind-refactoring-and-debugging-a-react-test-2jap)**
+* **Professional Git workflow with pull requests**
+* **Code reviews**
+* **Continuous integration**
 
-In this project, I have been exposed to many practical technics that I wouldn't have chances to see otherwise. Such as pixel perfect matching (as Front End Developer), debuging in IDE, planning with [complex UI model](https://github.com/ooloo-io/reddit-timer-kelvin8773/blob/master/src/main/components/search/heatMap.js#L92), git flow and [testing in Front End project](https://dev.to/jkettmann/inside-a-dev-s-mind-refactoring-and-debugging-a-react-test-2jap). 
+I was free to choose any technical stack, packages, and coding styles to finish the project as long as I met the acceptance criteria of a given task. The only limitation was to use React.
 
-I am inspired by some of the concepts introduced in this project that I decide write up an article to tech others junior developer [how to get start to writes tests in React today](https://dev.to/kelvin9877/how-to-write-tests-for-react-in-2020-4oai). 
+The code reviews gave me insights into best practices to follow (see [this example](https://github.com/ooloo-io/reddit-timer-kelvin8773/pull/11#pullrequestreview-412073827)). I was able to learn a lot and evolve my front-end knowledge rapidly.
 
-If you find this project is interesting to build or you like to experience what a Front End developer will experience in the real world, try to to Enroll the course in [ooloo.io](https://ooloo.io/) to see how it works out for you, Thanks!
+Inspired by some of the concepts introduced in this project I wrote up an article to teach other junior developers [how to get started writing tests for React applications](https://dev.to/kelvin9877/how-to-write-tests-for-react-in-2020-4oai). **This article was very well-received. It got 200+ reactions and was featured in the dev.to newsletter.**
+
 
 ### ✨ [Demo Link](https://reddittimer.netlify.app/)
 
@@ -74,4 +82,4 @@ yarn test
 
 
 ***
-Special Thanks for [ooloo.io](https://ooloo.io/) and [Johannes Kettmann](https://jkettmann.com).
+Special Thanks to [ooloo.io](https://ooloo.io/) and [Johannes Kettmann](https://jkettmann.com).
