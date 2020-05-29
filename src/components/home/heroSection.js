@@ -5,7 +5,7 @@ import {
 import Styled from 'styled-components';
 import Button from '../button';
 import heatMap from './table.png';
-import searchJson from '../../../config/search.json';
+import searchJson from '../../helper/search.json';
 
 const Hero = Styled.div`
   margin: 0 auto 130px;

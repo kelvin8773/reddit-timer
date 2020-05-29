@@ -2,7 +2,7 @@ import React from 'react';
 import Styled from 'styled-components';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-import { REDDIT_USER_BASE_URL } from '../../../config/constants';
+import { REDDIT_USER_BASE_URL } from '../../helper/constants';
 
 const TableWrapper = Styled.table`
   box-sizing: border-box;

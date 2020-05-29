@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-  Link,
-} from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import Styled from 'styled-components';
 import { ReactComponent as Logo } from './logo.svg';
-import SearchJson from '../config/search.json';
-
+import SearchJson from '../../helper/search.json';
 
 const StyledNavbar = Styled.div`
     height: 100px;
@@ -48,11 +45,11 @@ const Navbar = () => {
           Search
         </LinkItem>
 
-        <LinkItem to="/#how-it-work">
+        <LinkItem smooth to="/#howItWorks">
           How it works
         </LinkItem>
 
-        <LinkItem to="/#about">
+        <LinkItem smooth to="/#about">
           About
         </LinkItem>
 

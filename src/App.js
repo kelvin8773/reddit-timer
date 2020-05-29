@@ -4,11 +4,11 @@ import {
 } from 'react-router-dom';
 
 import Styled from 'styled-components';
-import Navbar from './navbar';
-import Main from './main';
-import Footer from './footer';
-import Theme from './config/theme/theme';
-import GlobalStyle from './config/theme/global';
+import Navbar from './components/navbar';
+import Main from './pages';
+import Footer from './components/footer';
+import Theme from './stylesheets/theme/theme';
+import GlobalStyle from './stylesheets/theme/global';
 
 const AppContainer = Styled.div`
   width: 1440px;
