@@ -82,4 +82,4 @@ yarn test
 
 
 ***
-Special Thanks to [ooloo.io](https://ooloo.io/) and [Johannes Kettmann](https://jkettmann.com).
+***Special Thanks to [ooloo.io](https://ooloo.io/) and [Johannes Kettmann](https://jkettmann.com).***
