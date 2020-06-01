@@ -25,7 +25,7 @@ const LinkItem = Styled(Link)`
 `;
 
 const Footer = () => (
-  <StyledFooter>
+  <StyledFooter data-testid="footer">
     <LinkItem
       as="a"
       href="http://ooloo.io"

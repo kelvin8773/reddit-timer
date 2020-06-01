@@ -14,12 +14,11 @@ const StyledMain = Styled.div`
 `;
 
 const Main = () => (
-  <StyledMain>
+  <StyledMain data-testid="main">
     <Switch>
       <Route path="/search/:redditName">
         <Search />
       </Route>
-
       <Route path="/">
         <Home />
       </Route>
