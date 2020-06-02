@@ -24,7 +24,7 @@ const LinkItems = Styled.div`
 `;
 
 const LinkItem = Styled(NavLink)`
-    color: #636363;
+    color: ${({ theme }) => theme.colors.brownishGrey};
     margin-left: 26px;
     font-size: 16px;
 `;

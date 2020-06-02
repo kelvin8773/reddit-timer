@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+
+import Theme from '../../stylesheets/theme/theme';
 import Navbar from './index';
 
 const Navlinks = [
@@ -15,9 +17,11 @@ describe('NavBar links', () => {
     "Check if have %s link.",
     (link) => {
       render(
-        <BrowserRouter>
-          <Navbar />
-        </BrowserRouter>
+        <Theme>
+          <BrowserRouter>
+            <Navbar />
+          </BrowserRouter>
+        </Theme>
       );
       const linkDom = screen.queryByText(link.text) || screen.getByTestId('navLogo');
 

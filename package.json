@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^10.0.0",
     "axios": "^0.19.2",
     "dayjs": "^1.8.25",
+    "history": "^4.10.1",
     "jest-axe": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
