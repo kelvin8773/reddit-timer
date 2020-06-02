@@ -28,14 +28,14 @@ const Footer = () => (
   <StyledFooter data-testid="footer">
     <LinkItem
       as="a"
-      href="http://ooloo.io"
+      href="https://ooloo.io"
       target="_blank"
       rel="noopener noreferrer"
     >
       ooloo.io
     </LinkItem>
 
-    <Link to="/">
+    <Link to="/" data-testid="footLogo">
       <Logo />
     </Link>
 
