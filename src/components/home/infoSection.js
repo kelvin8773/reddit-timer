@@ -14,7 +14,7 @@ const Info = Styled.div`
   }
 `;
 
-const HeadLine = Styled.h3`
+const HeadLine = Styled.h2`
   font-size: 24px;
   color: #000;
   font-weight: 400;

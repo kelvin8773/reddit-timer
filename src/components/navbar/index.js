@@ -1,5 +1,6 @@
 import React from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 import { ReactComponent as Logo } from './logo.svg';
 import SearchJson from '../../helper/search.json';
@@ -22,19 +23,18 @@ const LinkItems = Styled.div`
   align-items: center;
 `;
 
-const LinkItem = Styled(Link)`
-    color: ${({ theme }) => theme.colors.brownishGrey};;
+const LinkItem = Styled(NavLink)`
+    color: #636363;
     margin-left: 26px;
     font-size: 16px;
 `;
-
 
 const Navbar = () => {
   const subReddit = SearchJson.defaultSubreddit;
 
   return (
     <StyledNavbar data-testid='header'>
-      <Link to="/">
+      <Link to="/" data-testid="navLogo">
         <StyledLogo />
       </Link>
 
@@ -54,8 +54,8 @@ const Navbar = () => {
         </LinkItem>
 
       </LinkItems>
-
     </StyledNavbar>
+
   );
 };
 
