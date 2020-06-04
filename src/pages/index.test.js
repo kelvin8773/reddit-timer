@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import Theme from '../stylesheets/theme/theme';
@@ -50,6 +49,7 @@ describe('main content', () => {
 
     expect(screen.queryByText(/search/i)).toBeInTheDocument();
     expect(screen.queryByDisplayValue(searchJson.defaultSubreddit)).toBeInTheDocument();
+    expect(history.location.pathname).toEqual(`/search/${searchJson.defaultSubreddit}`);
   });
 
   test('click Hero Img to enter search Page', () => {
@@ -61,7 +61,7 @@ describe('main content', () => {
 
     expect(screen.queryByText(/search/i)).toBeInTheDocument();
     expect(screen.queryByDisplayValue(searchJson.defaultSubreddit)).toBeInTheDocument();
-
+    expect(history.location.pathname).toEqual(`/search/${searchJson.defaultSubreddit}`);
   });
 
   const routes = [
@@ -76,7 +76,10 @@ describe('main content', () => {
     setup(<Main />, history);
     const pageContent = screen.queryByDisplayValue(route.showText)
       || screen.queryByText(route.showText)
+
     expect(pageContent).toBeInTheDocument();
+    expect(history.location.pathname).toEqual(route.path);
+    expect(history.length).toBe(2);
   });
 
 })

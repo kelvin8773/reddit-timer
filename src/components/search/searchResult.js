@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import { updatePosts } from '../../redux/postsSlice';
 import getPosts from '../../helper/redditAPI';
 
+
 import Spinner from './spinner';
 import HeatMap from './heatMap';
 
@@ -59,7 +60,7 @@ const Result = () => {
   }, [redditName, dispatch]);
 
   return (
-    <ResultWrapper>
+    <ResultWrapper data-testid="searchResult">
       {loading && <Spinner />}
       {errorMsg && <MessageWrapper>{errorMsg}</MessageWrapper>}
       {!errorMsg && !loading && <HeatMap />}

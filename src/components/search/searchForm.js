@@ -55,7 +55,7 @@ const SearchForm = () => {
   }, [redditName]);
 
   return (
-    <Container>
+    <Container data-testid="searchForm">
       <FormTitle>
         Find the best time for a subreddit
       </FormTitle>
