@@ -97,7 +97,7 @@ const HeatMap = () => {
     ? posts[getDay(clickedIndex)][getHour(clickedIndex)] : [];
 
   return (
-    <HeatMapContainter>
+    <HeatMapContainter data-testid="heatMap">
       <HeatMapCoLabels>
         {
           HEATMAP_HOUR_LABELS.map((label) => (

@@ -40,7 +40,20 @@ describe('main content', () => {
 
   });
 
-  test('click Home Button to enter search Page', () => {
+  test('click Hero Img to enter search Page', async () => {
+    const history = createMemoryHistory();
+    setup(<Main />, history);
+    const heroImg = screen.getByAltText(/heat map/i);
+    expect(heroImg).toBeInTheDocument();
+    user.click(heroImg);
+
+    expect(screen.queryByText(/search/i)).toBeInTheDocument();
+    expect(screen.queryByDisplayValue(searchJson.defaultSubreddit)).toBeInTheDocument();
+    expect(history.location.pathname).toEqual(`/search/${searchJson.defaultSubreddit}`);
+
+  });
+
+  xtest('click Home Button to enter search Page', async () => {
     const history = createMemoryHistory();
     setup(<Main />, history);
     const homeButton = screen.getByText(/show me the best time/i)
@@ -52,17 +65,6 @@ describe('main content', () => {
     expect(history.location.pathname).toEqual(`/search/${searchJson.defaultSubreddit}`);
   });
 
-  test('click Hero Img to enter search Page', () => {
-    const history = createMemoryHistory();
-    setup(<Main />, history);
-    const heroImg = screen.getByAltText(/heat map/i)
-    expect(heroImg).toBeInTheDocument();
-    user.click(heroImg);
-
-    expect(screen.queryByText(/search/i)).toBeInTheDocument();
-    expect(screen.queryByDisplayValue(searchJson.defaultSubreddit)).toBeInTheDocument();
-    expect(history.location.pathname).toEqual(`/search/${searchJson.defaultSubreddit}`);
-  });
 
   const routes = [
     { path: '/', showText: 'r/javascript' },
@@ -70,7 +72,7 @@ describe('main content', () => {
     { path: '/search/reactjs', showText: 'reactjs' },
   ];
 
-  test.each(routes)('render different %s route', (route) => {
+  xtest.each(routes)('render different %s route', async (route) => {
     const history = createMemoryHistory();
     history.push(route.path);
     setup(<Main />, history);

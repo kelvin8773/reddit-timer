@@ -60,7 +60,7 @@ const PostTable = ({ posts }) => {
   const sortedPosts = [...posts].sort((a, b) => getMin(a.created_utc) - getMin(b.created_utc));
 
   return (
-    <div>
+    <div data-testid="postTable">
       <h3>Posts</h3>
       <TableWrapper>
         <thead>

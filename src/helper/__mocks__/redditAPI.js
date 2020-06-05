@@ -1,7 +1,8 @@
-import mockPosts from './mockPosts.json';
+import mockPosts from './mockPosts_javascript.json';
 
 console.log('use mock api');
 
-export default {
-  getPosts: () => Promise.resolve(mockPosts),
-};
+const getPosts = () => Promise.resolve(mockPosts);
+
+export default getPosts;
+
