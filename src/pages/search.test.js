@@ -39,10 +39,8 @@ describe('Search Page', () => {
     setup(<Search />, 'search', defaultSubreddit)
     expect(screen.getByTestId('searchForm')).toBeInTheDocument();
     // expect(screen.getByDisplayValue(defaultSubreddit)).toBeInTheDocument();
-
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
-
     await act(() => promise);
   })
 
@@ -61,8 +59,5 @@ describe('Search Page', () => {
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
 
   })
-
-
-
 
 })
