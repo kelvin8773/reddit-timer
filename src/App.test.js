@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import App from './App';
 
+jest.mock('./helper/redditAPI');
+
 expect.extend(toHaveNoViolations);
 
 describe('App', () => {

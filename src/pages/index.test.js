@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
@@ -9,6 +9,7 @@ import Theme from '../stylesheets/theme/theme';
 import searchJson from '../helper/search.json';
 import Main from './index';
 
+jest.mock('../helper/redditAPI');
 
 const setup = (component, history) => (
   render(
@@ -51,9 +52,10 @@ describe('main content', () => {
     expect(screen.queryByDisplayValue(searchJson.defaultSubreddit)).toBeInTheDocument();
     expect(history.location.pathname).toEqual(`/search/${searchJson.defaultSubreddit}`);
 
+    await act(() => Promise.resolve());
   });
 
-  xtest('click Home Button to enter search Page', async () => {
+  test('click Home Button to enter search Page', async () => {
     const history = createMemoryHistory();
     setup(<Main />, history);
     const homeButton = screen.getByText(/show me the best time/i)
@@ -63,6 +65,8 @@ describe('main content', () => {
     expect(screen.queryByText(/search/i)).toBeInTheDocument();
     expect(screen.queryByDisplayValue(searchJson.defaultSubreddit)).toBeInTheDocument();
     expect(history.location.pathname).toEqual(`/search/${searchJson.defaultSubreddit}`);
+
+    await act(() => Promise.resolve());
   });
 
 
@@ -72,7 +76,7 @@ describe('main content', () => {
     { path: '/search/reactjs', showText: 'reactjs' },
   ];
 
-  xtest.each(routes)('render different %s route', async (route) => {
+  test.each(routes)('render different %s route', async (route) => {
     const history = createMemoryHistory();
     history.push(route.path);
     setup(<Main />, history);
@@ -82,6 +86,8 @@ describe('main content', () => {
     expect(pageContent).toBeInTheDocument();
     expect(history.location.pathname).toEqual(route.path);
     expect(history.length).toBe(2);
+
+    await act(() => Promise.resolve());
   });
 
 })

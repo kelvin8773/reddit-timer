@@ -22,7 +22,7 @@ const MessageWrapper = Styled.div`
   text-align: center;
 `;
 
-const convertToHeatMapData = (data) => {
+export const convertToHeatMapData = (data) => {
   const result = new Array(7).fill().map(() => new Array(24).fill().map(() => []));
   for (let i = 0; i < data.length; i += 1) {
     const time = dayjs.unix(data[i].created_utc);

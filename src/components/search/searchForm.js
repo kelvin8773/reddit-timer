@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   useParams,
   useHistory,
@@ -62,7 +62,11 @@ const SearchForm = ({ loading }) => {
       const validSearchRegex = /^[a-z]{1}[\w]{2,20}$/gim;
       setIsValidSearch(validSearchRegex.test(value));
     }
-  }
+  };
+
+  useEffect(() => {
+    setSubreddit(redditName)
+  }, [redditName]);
 
   return (
     <Container data-testid="searchForm">

@@ -1,22 +1,31 @@
 import React from 'react';
 import { render, screen, act, waitForElementToBeRemoved, fireEvent } from '@testing-library/react';
-
 import { Route, MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import Theme from '../stylesheets/theme/theme';
 
-import Search from './search';
+import getPosts from '../helper/redditAPI';
+import Search, { convertToHeatMapData } from './search';
 import searchJson from '../helper/search.json';
-// import mockPosts from '../helper/__mocks__/mockPosts_javascript.json';
+import mockPosts_reactjslearn from '../helper/__mocks__/mockPosts_reactjslearn.json';
+import mockPosts_javascript from '../helper/__mocks__/mockPosts_javascript.json';
 
-afterEach(() => jest.clearAllMocks());
 jest.mock('../helper/redditAPI');
+afterEach(() => jest.clearAllMocks());
 
 const { defaultSubreddit } = searchJson;
 
-const setup = (component, path, page) => {
-  const url = `/${path}/${page}`;
+const setup = (mockState = 'pass', data = mockPosts_javascript) => {
+  const component = <Search />;
+  const path = 'search';
+  const url = `/${path}/${defaultSubreddit}`;
+  if (mockState === 'pass') {
+    getPosts.mockResolvedValueOnce(data);
+  } else if (mockState === 'fail') {
+    getPosts.mockRejectedValue(data);
+  };
+
   return (
     render(
       <Provider store={store}>
@@ -33,8 +42,8 @@ const setup = (component, path, page) => {
 }
 
 describe('Search Page', () => {
-  test('Search Form is loaded & input field show default value', async () => {
-    setup(<Search />, 'search', defaultSubreddit)
+  test('loading default subreddit with success', async () => {
+    setup();
 
     expect(screen.getByTestId('searchForm')).toBeInTheDocument();
     const input = screen.getByTestId('searchInput');
@@ -47,7 +56,7 @@ describe('Search Page', () => {
 
   test('change subreddit being search', async () => {
     const NEW_SUBREDDIT = 'news';
-    setup(<Search />, 'search', defaultSubreddit);
+    setup();
     const button = screen.getByRole('button');
     const input = screen.getByTestId('searchInput');
     expect(input.value).toEqual(defaultSubreddit);

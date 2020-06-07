@@ -1,8 +1,6 @@
-import mockPosts from './mockPosts_javascript.json';
-
 console.log('use mock api');
 
-const getPosts = () => Promise.resolve(mockPosts);
+const getPosts = jest.fn().mockResolvedValue([]);
 
 export default getPosts;
 
