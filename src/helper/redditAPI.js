@@ -15,10 +15,10 @@ const getPosts = async (subreddit) => {
 
   try {
     const response = await axios.get(url);
-    if (response.status === 200 && response.data.data.length > 0) {
+    if (response.status === 200) {
       return response.data.data;
     }
-    throw new Error('No such subreddit!');
+    throw new Error('Network Error, Check Again!');
   } catch (error) {
     throw new Error(error.message);
   }

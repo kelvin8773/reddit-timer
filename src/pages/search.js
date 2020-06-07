@@ -45,15 +45,21 @@ const Search = () => {
 
     getPosts(redditName)
       .then((res) => {
-        const posts = convertToHeatMapData(res);
-        dispatch(updatePosts(posts));
-        setLoading(false);
+        if (res.length > 0) {
+          const posts = convertToHeatMapData(res);
+          dispatch(updatePosts(posts));
+        } else {
+          throw new Error('No such subreddit!');
+        }
       })
       .catch((error) => {
         setErrorMsg(error.message);
         dispatch(updatePosts([]));
+      })
+      .finally(() => {
         setLoading(false);
-      });
+      })
+
   }, [redditName, dispatch]);
 
   return (

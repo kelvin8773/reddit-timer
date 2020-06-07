@@ -16,15 +16,19 @@ afterEach(() => jest.clearAllMocks());
 
 const { defaultSubreddit } = searchJson;
 
-const setup = (mockState = 'pass', data = []) => {
+const mockGetPosts = (state, data) => {
+  if (state === 'pass') {
+    getPosts.mockResolvedValueOnce(data);
+  } else if (state === 'fail') {
+    getPosts.mockRejectedValue(data);
+  }
+}
+
+const setup = (state, data) => {
   const component = <Search />;
   const path = 'search';
   const url = `/${path}/${defaultSubreddit}`;
-  if (mockState === 'pass') {
-    getPosts.mockResolvedValueOnce(data);
-  } else if (mockState === 'fail') {
-    getPosts.mockRejectedValue(data);
-  };
+  mockGetPosts(state, data);
 
   return (
     render(
@@ -43,13 +47,14 @@ const setup = (mockState = 'pass', data = []) => {
 
 describe('Search Page', () => {
   test('loading default subreddit with success', async () => {
-    setup('pass');
+    setup('pass', mockPosts_javascript);
     expect(screen.getByTestId('searchForm')).toBeInTheDocument();
     const input = screen.getByTestId('searchInput');
     expect(input.value).toEqual(defaultSubreddit);
 
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
+
     expect(getPosts).toHaveBeenCalledTimes(1);
     expect(getPosts).toBeCalledWith(expect.stringContaining(defaultSubreddit));
     await act(() => Promise.resolve());
@@ -57,13 +62,15 @@ describe('Search Page', () => {
 
   test('change subreddit being search', async () => {
     const NEW_SUBREDDIT = 'reactjslearn';
-    setup('pass', mockPosts_reactjslearn);
+    setup('pass', []);
     const button = screen.getByRole('button');
     const input = screen.getByTestId('searchInput');
     expect(input.value).toEqual(defaultSubreddit);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
+
     fireEvent.change(input, { target: { value: NEW_SUBREDDIT } });
     expect(input.value).toEqual(NEW_SUBREDDIT);
+    mockGetPosts('pass', mockPosts_reactjslearn);
     fireEvent.click(button);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
