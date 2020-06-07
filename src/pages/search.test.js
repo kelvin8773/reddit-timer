@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, act, waitForElementToBeRemoved, fireEvent } from '@testing-library/react';
-import user from '@testing-library/user-event';
 
 import { Route, MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -9,7 +8,7 @@ import Theme from '../stylesheets/theme/theme';
 
 import Search from './search';
 import searchJson from '../helper/search.json';
-import mockPosts from '../helper/__mocks__/mockPosts_javascript.json';
+// import mockPosts from '../helper/__mocks__/mockPosts_javascript.json';
 
 afterEach(() => jest.clearAllMocks());
 jest.mock('../helper/redditAPI');
@@ -23,7 +22,7 @@ const setup = (component, path, page) => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[url]}>
           <Theme>
-            <Route path={`/${path}/:subreddit`}>
+            <Route path={`/${path}/:redditName`}>
               {component}
             </Route>
           </Theme>
@@ -34,30 +33,31 @@ const setup = (component, path, page) => {
 }
 
 describe('Search Page', () => {
-  test('Search Form is loaded & heatmap will load after spinner', async () => {
-    const promise = Promise.resolve();
+  test('Search Form is loaded & input field show default value', async () => {
     setup(<Search />, 'search', defaultSubreddit)
+
     expect(screen.getByTestId('searchForm')).toBeInTheDocument();
-    // expect(screen.getByDisplayValue(defaultSubreddit)).toBeInTheDocument();
+    const input = screen.getByTestId('searchInput');
+    expect(input.value).toEqual(defaultSubreddit);
+
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
-    await act(() => promise);
-  })
+    await act(() => Promise.resolve());
+  });
 
   test('change subreddit being search', async () => {
-    const NEW_SUBREDDIT = 'reactjs';
-    setup(<Search />, 'search', NEW_SUBREDDIT);
+    const NEW_SUBREDDIT = 'news';
+    setup(<Search />, 'search', defaultSubreddit);
     const button = screen.getByRole('button');
     const input = screen.getByTestId('searchInput');
-    // expect(input.value).toEqual(defaultSubreddit);
+    expect(input.value).toEqual(defaultSubreddit);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
-    // user.type(input, NEW_SUBREDDIT);
     fireEvent.change(input, { target: { value: NEW_SUBREDDIT } });
     expect(input.value).toEqual(NEW_SUBREDDIT);
-    user.click(button);
-    // await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
+    fireEvent.click(button);
+    await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
-
-  })
+    await act(() => Promise.resolve());
+  });
 
 })

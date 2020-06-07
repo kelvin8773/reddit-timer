@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Styled from 'styled-components';
 import Button from '../button';
 
-
 const Container = Styled.div`
   display: flex;
   flex-direction: column;
