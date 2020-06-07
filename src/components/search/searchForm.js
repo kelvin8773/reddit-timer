@@ -42,8 +42,8 @@ const SearchInput = Styled.input`
 
 const SearchForm = () => {
   const { redditName } = useParams();
-  const [subreddit, setSubreddit] = useState(redditName);
   const history = useHistory();
+  const [subreddit, setSubreddit] = useState(redditName);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ const SearchForm = () => {
       <FormWrapper onSubmit={handleSubmit}>
         <InputPrefix>r /</InputPrefix>
         <SearchInput
-          id="search-input"
+          data-testid="searchInput"
           type="text"
           value={subreddit}
           onChange={(e) => setSubreddit(e.target.value)}
