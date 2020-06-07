@@ -3,6 +3,7 @@ import {
   useParams,
   useHistory,
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Styled from 'styled-components';
 import Button from '../button';
 
@@ -40,7 +41,7 @@ const SearchInput = Styled.input`
   margin-right: 10px;
 `;
 
-const SearchForm = () => {
+const SearchForm = ({ loading }) => {
   const { redditName } = useParams();
   const history = useHistory();
   const [subreddit, setSubreddit] = useState(redditName);
@@ -48,7 +49,7 @@ const SearchForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isValidSearch) {
+    if (isValidSearch && !loading) {
       history.push(`/search/${subreddit}`);
     }
   };
@@ -79,6 +80,7 @@ const SearchForm = () => {
         />
         <Button
           type="submit"
+          disabled={!isValidSearch || loading}
         >
           Search
         </Button>
@@ -86,5 +88,9 @@ const SearchForm = () => {
     </Container>
   );
 };
+
+SearchForm.propTypes = {
+  loading: PropTypes.bool.isRequired,
+}
 
 export default SearchForm;

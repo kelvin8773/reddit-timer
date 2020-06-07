@@ -58,8 +58,8 @@ const Search = () => {
 
   return (
     <>
-      <SearchForm />
-      <ResultWrapper data-testid="searchResult" loading={loading}>
+      <SearchForm loading={loading} />
+      <ResultWrapper data-testid="searchResult" >
         {loading && <Spinner />}
         {errorMsg && <MessageWrapper>{errorMsg}</MessageWrapper>}
         {!errorMsg && !loading && <HeatMap />}
