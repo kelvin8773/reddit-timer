@@ -16,7 +16,7 @@ afterEach(() => jest.clearAllMocks());
 
 const { defaultSubreddit } = searchJson;
 
-const setup = (mockState = 'pass', data = mockPosts_javascript) => {
+const setup = (mockState = 'pass', data = []) => {
   const component = <Search />;
   const path = 'search';
   const url = `/${path}/${defaultSubreddit}`;
@@ -43,20 +43,21 @@ const setup = (mockState = 'pass', data = mockPosts_javascript) => {
 
 describe('Search Page', () => {
   test('loading default subreddit with success', async () => {
-    setup();
-
+    setup('pass');
     expect(screen.getByTestId('searchForm')).toBeInTheDocument();
     const input = screen.getByTestId('searchInput');
     expect(input.value).toEqual(defaultSubreddit);
 
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
+    expect(getPosts).toHaveBeenCalledTimes(1);
+    expect(getPosts).toBeCalledWith(expect.stringContaining(defaultSubreddit));
     await act(() => Promise.resolve());
   });
 
   test('change subreddit being search', async () => {
-    const NEW_SUBREDDIT = 'news';
-    setup();
+    const NEW_SUBREDDIT = 'reactjslearn';
+    setup('pass', mockPosts_reactjslearn);
     const button = screen.getByRole('button');
     const input = screen.getByTestId('searchInput');
     expect(input.value).toEqual(defaultSubreddit);
@@ -66,6 +67,10 @@ describe('Search Page', () => {
     fireEvent.click(button);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
+
+    expect(getPosts).toHaveBeenCalledTimes(2);
+    expect(getPosts).toBeCalledWith(expect.stringContaining(defaultSubreddit));
+    expect(getPosts).toBeCalledWith(expect.stringContaining(NEW_SUBREDDIT));
     await act(() => Promise.resolve());
   });
 

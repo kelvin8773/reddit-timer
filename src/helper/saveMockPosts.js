@@ -29,7 +29,7 @@ const saveMockPosts = (path, data) => {
   };
 }
 
-const redditName = 'reactjslearn';
+const redditName = 'learnreactjs';
 
 getPosts(redditName)
   .then(res => {
