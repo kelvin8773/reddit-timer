@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   useParams,
   useHistory,
@@ -44,15 +44,25 @@ const SearchForm = () => {
   const { redditName } = useParams();
   const history = useHistory();
   const [subreddit, setSubreddit] = useState(redditName);
+  const [isValidSearch, setIsValidSearch] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push(`/search/${subreddit}`);
+    if (isValidSearch) {
+      history.push(`/search/${subreddit}`);
+    }
   };
 
-  useEffect(() => {
-    setSubreddit(redditName);
-  }, [redditName]);
+  const handleChange = e => {
+    const { value } = e.currentTarget;
+    const validInputRegex = /^\w*$/;
+    const isValidInput = validInputRegex.test(value);
+    if (isValidInput) {
+      setSubreddit(value);
+      const validSearchRegex = /^[a-z]{1}[\w]{2,20}$/gim;
+      setIsValidSearch(validSearchRegex.test(value));
+    }
+  }
 
   return (
     <Container data-testid="searchForm">
@@ -62,10 +72,10 @@ const SearchForm = () => {
       <FormWrapper onSubmit={handleSubmit}>
         <InputPrefix>r /</InputPrefix>
         <SearchInput
-          data-testid="searchInput"
           type="text"
+          data-testid="searchInput"
           value={subreddit}
-          onChange={(e) => setSubreddit(e.target.value)}
+          onChange={handleChange}
         />
         <Button
           type="submit"
