@@ -1,14 +1,23 @@
 import React from 'react';
-import { render, screen, act, waitForElementToBeRemoved, fireEvent, findByText } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved, fireEvent, within } from '@testing-library/react';
 import { Route, MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+
 import store from '../redux/store';
 import Theme from '../stylesheets/theme/theme';
 
+// import helper
 import getPosts from '../helper/redditAPI';
+import {
+  HEATMAP_COLORS,
+} from '../helper/constants';
+
+// component to test
 import Search, { convertToHeatMapData } from './search';
+
+// import mock data
 import searchJson from '../helper/search.json';
-import mockPosts_reactjslearn from '../helper/__mocks__/mockPosts_reactjslearn.json';
+import mockPosts_learnjavascript from '../helper/__mocks__/mockPosts_learnjavascript.json';
 import mockPosts_javascript from '../helper/__mocks__/mockPosts_javascript.json';
 
 const { defaultSubreddit } = searchJson;
@@ -49,7 +58,7 @@ describe('Search page', () => {
   test('loading default subreddit and search new subreddit success flow', async () => {
     setup('pass', mockPosts_javascript);
 
-    const NEW_SUBREDDIT = 'reactjslearn';
+    const NEW_SUBREDDIT = 'learnjavascript';
     const button = screen.getByRole('button');
     const input = screen.getByTestId('searchInput');
 
@@ -63,7 +72,7 @@ describe('Search page', () => {
     // Second round load user input valid value
     fireEvent.change(input, { target: { value: NEW_SUBREDDIT } });
     expect(input.value).toEqual(NEW_SUBREDDIT);
-    mockGetPosts('pass', mockPosts_reactjslearn);
+    mockGetPosts('pass', mockPosts_learnjavascript);
     fireEvent.click(button);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
@@ -88,14 +97,39 @@ describe('Search page', () => {
     expect(getPosts).toHaveBeenCalledTimes(1);
   });
 
-  test('heatmap value match mock post data', async () => {
+  test('heatmap value match mock post data & use correct color', async () => {
+    setup('pass', mockPosts_javascript);
+    const heatMapData = convertToHeatMapData(mockPosts_javascript);
+    await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
+    expect(screen.getByTestId('heatMap')).toBeInTheDocument();
+    const rows = screen.getAllByRole('row');
+
+    rows.map((row, weekday) => {
+      const cells = within(row).getAllByRole('cell');
+      cells.map((cell, hour) => {
+        if (hour !== 0) {
+          const showNumber = parseInt(cell.textContent, 10);
+          const expectColor = HEATMAP_COLORS[showNumber] || HEATMAP_COLORS[10];
+          expect(showNumber).toEqual(heatMapData[weekday][hour - 1].length);
+          expect(cell).toHaveStyle('background:', expectColor);
+        }
+      })
+    });
+    expect(getPosts).toHaveBeenCalledTimes(1);
+  });
+
+  test('heatmap display the correct timezone', async () => {
     setup('pass', mockPosts_javascript);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
 
-
-
+    const timezoneMsg = screen.getByTestId('timezoneMsg');
+    const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    expect(timezoneMsg.textContent).toBe(`All times are shown in your timezone: ${localTimezone}`);
+    expect(getPosts).toHaveBeenCalledTimes(1);
   });
+
+
 
 
 })

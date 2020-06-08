@@ -130,9 +130,8 @@ const HeatMap = () => {
         </tbody>
       </table>
 
-      <HeatMapTimezone>
-        All times are shown in your timezone:&nbsp;
-        <strong>{localTimezone}</strong>
+      <HeatMapTimezone data-testid="timezoneMsg">
+        All times are shown in your timezone: <strong>{localTimezone}</strong>
       </HeatMapTimezone>
 
       {selectedPosts.length !== 0 && <PostTable posts={selectedPosts} />}

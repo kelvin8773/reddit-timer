@@ -28,7 +28,7 @@ const getPosts = async (subreddit) => {
           author: post.author,
         };
         posts.push(oneEntry);
-      })
+      });
 
       return posts;
     }
