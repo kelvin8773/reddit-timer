@@ -1,7 +1,8 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-console.log('use Real api');
+// eslint-disable-next-line no-console
+console.log('use real API');
 
 // API Reference - https://reddit-api.readthedocs.io/en/latest/#searching-submissions
 
@@ -16,9 +17,8 @@ const getPosts = async (subreddit) => {
   try {
     const response = await axios.get(url);
     if (response.status === 200) {
-      const posts = [];
-      response.data.data.map((post) => {
-        const oneEntry = {
+      return response.data.data.reduce((result, post) => {
+        result.push({
           id: post.id,
           title: post.title,
           full_link: post.full_link,
@@ -26,15 +26,14 @@ const getPosts = async (subreddit) => {
           score: post.score,
           num_comments: post.num_comments,
           author: post.author,
-        };
-        posts.push(oneEntry);
-      });
-
-      return posts;
+        });
+        return result;
+      }, []);
     }
   } catch (error) {
     throw new Error(error.message);
   }
+  return null;
 };
 
 export default getPosts;

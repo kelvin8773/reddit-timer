@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter
+  BrowserRouter,
 } from 'react-router-dom';
 
 import Styled from 'styled-components';

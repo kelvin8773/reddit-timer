@@ -19,7 +19,7 @@ const setup = (component, history) => (
           {component}
         </Router>
       </Theme>
-    </Provider>
+    </Provider>,
   )
 );
 
@@ -33,12 +33,10 @@ describe('main content', () => {
     const history = createMemoryHistory();
     setup(<Main />, history);
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       expect(screen.getByTestId(section.id)).toBeInTheDocument();
       expect(screen.getByText(section.showTitle)).toBeInTheDocument();
-      console.log(section.showTitle + " is loaded.");
     });
-
   });
 
   test('click Hero Img to enter search Page', async () => {
@@ -58,7 +56,7 @@ describe('main content', () => {
   test('click Home Button to enter search Page', async () => {
     const history = createMemoryHistory();
     setup(<Main />, history);
-    const homeButton = screen.getByText(/show me the best time/i)
+    const homeButton = screen.getByText(/show me the best time/i);
     expect(homeButton).toBeInTheDocument();
     user.click(homeButton);
 
@@ -81,7 +79,7 @@ describe('main content', () => {
     history.push(route.path);
     setup(<Main />, history);
     const pageContent = screen.queryByDisplayValue(route.showText)
-      || screen.queryByText(route.showText)
+      || screen.queryByText(route.showText);
 
     expect(pageContent).toBeInTheDocument();
     expect(history.location.pathname).toEqual(route.path);
@@ -89,5 +87,4 @@ describe('main content', () => {
 
     await act(() => Promise.resolve());
   });
-
-})
+});

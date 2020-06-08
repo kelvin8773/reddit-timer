@@ -53,7 +53,7 @@ const SearchForm = ({ loading }) => {
     }
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { value } = e.currentTarget;
     const validInputRegex = /^\w*$/;
     const isValidInput = validInputRegex.test(value);
@@ -65,7 +65,7 @@ const SearchForm = ({ loading }) => {
   };
 
   useEffect(() => {
-    setSubreddit(redditName)
+    setSubreddit(redditName);
   }, [redditName]);
 
   return (
@@ -94,6 +94,6 @@ const SearchForm = ({ loading }) => {
 
 SearchForm.propTypes = {
   loading: PropTypes.bool.isRequired,
-}
+};
 
 export default SearchForm;

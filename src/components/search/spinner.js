@@ -21,7 +21,7 @@ const Spinner = () => (
   <div data-testid="loadSpinner">
     <StyledSpinner />
   </div>
-)
+);
 
 
 export default Spinner;

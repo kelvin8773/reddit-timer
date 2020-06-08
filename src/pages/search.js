@@ -58,20 +58,18 @@ const Search = () => {
       })
       .finally(() => {
         setLoading(false);
-      })
-
+      });
   }, [redditName, dispatch]);
 
   return (
     <>
       <SearchForm loading={loading} />
-      <ResultWrapper data-testid="searchResult" >
+      <ResultWrapper data-testid="searchResult">
         {loading && <Spinner />}
         {errorMsg && <MessageWrapper>{errorMsg}</MessageWrapper>}
         {!errorMsg && !loading && <HeatMap />}
       </ResultWrapper>
     </>
   );
-
-}
+};
 export default Search;

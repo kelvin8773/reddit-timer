@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, screen, waitForElementToBeRemoved, fireEvent, within } from '@testing-library/react';
+import {
+  render, screen, waitForElementToBeRemoved, fireEvent, within,
+} from '@testing-library/react';
 import { Route, MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import dayjs from 'dayjs';
@@ -32,16 +34,14 @@ const mockGetPosts = (state, data) => {
   }
 };
 
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * Math.floor(max));
-};
+const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 
 const getRandomCellIds = (numberOfCells) => {
-  const randomCellIds = []
+  const randomCellIds = [];
   for (let i = 0; i < numberOfCells; i += 1) {
     const randomWeekday = getRandomInt(7);
     const randomHour = getRandomInt(24);
-    const randomCellTestId = 'cell-' + (randomWeekday * 100 + randomHour).toString();
+    const randomCellTestId = `cell-${(randomWeekday * 100 + randomHour).toString()}`;
 
     randomCellIds.push({
       id: randomCellTestId,
@@ -50,7 +50,7 @@ const getRandomCellIds = (numberOfCells) => {
     });
   }
   return randomCellIds;
-}
+};
 
 const setup = (state, data) => {
   const component = <Search />;
@@ -68,9 +68,9 @@ const setup = (state, data) => {
             </Route>
           </Theme>
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     )
-  )
+  );
 };
 
 afterEach(() => jest.clearAllMocks());
@@ -134,7 +134,7 @@ describe('Search page', () => {
           expect(showNumber).toEqual(heatMapData[weekday][hour - 1].length);
           expect(cell).toHaveStyle('background:', expectColor);
         }
-      })
+      });
     });
     expect(getPosts).toHaveBeenCalledTimes(1);
   });
@@ -146,7 +146,7 @@ describe('Search page', () => {
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
     const randomCellIds = getRandomCellIds(20);
 
-    randomCellIds.map(cell => {
+    randomCellIds.map((cell) => {
       const randomCell = screen.getByTestId(cell.id);
       const showNumber = parseInt(randomCell.textContent, 10);
       const expectColor = HEATMAP_COLORS[showNumber] || HEATMAP_COLORS[10];
@@ -173,7 +173,7 @@ describe('Search page', () => {
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
     const randomCellIds = getRandomCellIds(10);
 
-    randomCellIds.map(cell => {
+    randomCellIds.map((cell) => {
       const randomCell = screen.getByTestId(cell.id);
       const getMin = (utc) => dayjs.unix(utc).minute();
       const posts = heatMapData[cell.day][cell.hour].sort((a, b) => getMin(a.created_utc) - getMin(b.created_utc));
@@ -191,10 +191,8 @@ describe('Search page', () => {
             within(row).getByText((posts[idx - 1].num_comments).toString());
             within(row).getByText(posts[idx - 1].author);
           }
-        })
+        });
       }
-    })
-
+    });
   });
-
-})
+});

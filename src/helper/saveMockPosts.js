@@ -2,6 +2,7 @@
 // Put desire subreddit as first argument
 // example - node ./saveMockPosts.js javascript
 // example output - mockPosts_javascript.json
+/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
 const fs = require('fs');
 const axios = require('axios');
@@ -27,19 +28,19 @@ const getPosts = async (subreddit) => {
 
 const saveMockPosts = (path, data) => {
   try {
-    fs.writeFileSync(path, JSON.stringify(data))
+    fs.writeFileSync(path, JSON.stringify(data));
   } catch (err) {
-    console.error(err)
-  };
-}
+    console.error(err);
+  }
+};
 
 const redditName = process.argv[2];
-console.log('Saving subreddit - ' + redditName + ' posts to disk...');
+// eslint-disable-next-line no-console
+console.log(`Saving subreddit - ${redditName} posts to disk...`);
 
 getPosts(redditName)
-  .then(res => {
-    const data = [];
-    res.map((post) => {
+  .then((res) => {
+    const data = res.reduce((result, post) => {
       const oneEntry = {
         id: post.id,
         title: post.title,
@@ -49,12 +50,14 @@ getPosts(redditName)
         num_comments: post.num_comments,
         author: post.author,
       };
-      data.push(oneEntry);
-    })
+      result.push(oneEntry);
+      return result;
+    }, []);
     saveMockPosts(`./src/helper/__mocks__/mockPosts_${redditName}.json`, data);
-    console.log(`mockPosts_${redditName}.json` + 'saved.');
+    // eslint-disable-next-line no-console
+    console.log(`mockPosts_${redditName}.json saved.`);
   })
   .catch((error) => {
+    // eslint-disable-next-line no-console
     console.log(error.message);
   });
-
