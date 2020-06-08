@@ -117,6 +117,7 @@ const HeatMap = () => {
                 {posts[dayOfWeek].map((data, timeSlot) => (
                   <HeatMapCell
                     key={getIndex(dayOfWeek, timeSlot)}
+                    data-testid={`cell-${getIndex(dayOfWeek, timeSlot)}`}
                     postNumber={data.length}
                     clicked={clickedIndex === getIndex(dayOfWeek, timeSlot)}
                     onClick={() => setClickedIndex(getIndex(dayOfWeek, timeSlot))}
