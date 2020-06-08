@@ -20,8 +20,8 @@ import Search, { convertToHeatMapData } from './search';
 
 // import mock data
 import searchJson from '../helper/search.json';
-import mockPosts_learnjavascript from '../helper/__mocks__/mockPosts_learnjavascript.json';
-import mockPosts_javascript from '../helper/__mocks__/mockPosts_javascript.json';
+import mockPostsLearnjavascript from '../helper/__mocks__/mockPosts_learnjavascript.json';
+import mockPostsJavascript from '../helper/__mocks__/mockPosts_javascript.json';
 
 const { defaultSubreddit } = searchJson;
 jest.mock('../helper/redditAPI');
@@ -77,7 +77,7 @@ afterEach(() => jest.clearAllMocks());
 
 describe('Search page', () => {
   test('loading default subreddit and search new subreddit success flow', async () => {
-    setup('pass', mockPosts_javascript);
+    setup('pass', mockPostsJavascript);
 
     const NEW_SUBREDDIT = 'learnjavascript';
     const button = screen.getByRole('button');
@@ -93,7 +93,7 @@ describe('Search page', () => {
     // Second round load user input valid value
     fireEvent.change(input, { target: { value: NEW_SUBREDDIT } });
     expect(input.value).toEqual(NEW_SUBREDDIT);
-    mockGetPosts('pass', mockPosts_learnjavascript);
+    mockGetPosts('pass', mockPostsLearnjavascript);
     fireEvent.click(button);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
@@ -119,15 +119,15 @@ describe('Search page', () => {
   });
 
   xtest('heatmap value match all mock posts data & use correct color', async () => {
-    setup('pass', mockPosts_javascript);
-    const heatMapData = convertToHeatMapData(mockPosts_javascript);
+    setup('pass', mockPostsJavascript);
+    const heatMapData = convertToHeatMapData(mockPostsJavascript);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     const heatMap = screen.getByTestId('heatMap');
     const rows = within(heatMap).getAllByRole('row');
 
-    rows.map((row, weekday) => {
+    rows.forEach((row, weekday) => {
       const cells = within(row).getAllByRole('cell');
-      cells.map((cell, hour) => {
+      cells.forEach((cell, hour) => {
         if (hour !== 0) {
           const showNumber = parseInt(cell.textContent, 10);
           const expectColor = HEATMAP_COLORS[showNumber] || HEATMAP_COLORS[10];
@@ -140,13 +140,13 @@ describe('Search page', () => {
   });
 
   test('heatmap value match random mock posts & use correct color', async () => {
-    setup('pass', mockPosts_learnjavascript);
-    const heatMapData = convertToHeatMapData(mockPosts_learnjavascript);
+    setup('pass', mockPostsLearnjavascript);
+    const heatMapData = convertToHeatMapData(mockPostsLearnjavascript);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
     const randomCellIds = getRandomCellIds(20);
 
-    randomCellIds.map((cell) => {
+    randomCellIds.forEach((cell) => {
       const randomCell = screen.getByTestId(cell.id);
       const showNumber = parseInt(randomCell.textContent, 10);
       const expectColor = HEATMAP_COLORS[showNumber] || HEATMAP_COLORS[10];
@@ -156,7 +156,7 @@ describe('Search page', () => {
   });
 
   test('heatmap display the correct timezone', async () => {
-    setup('pass', mockPosts_javascript);
+    setup('pass', mockPostsJavascript);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
 
@@ -167,23 +167,24 @@ describe('Search page', () => {
   });
 
   test('post Table show up when random click on heatmap with right posts', async () => {
-    setup('pass', mockPosts_javascript);
-    const heatMapData = convertToHeatMapData(mockPosts_javascript);
+    setup('pass', mockPostsJavascript);
+    const heatMapData = convertToHeatMapData(mockPostsJavascript);
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
     const randomCellIds = getRandomCellIds(10);
 
-    randomCellIds.map((cell) => {
+    randomCellIds.forEach((cell) => {
       const randomCell = screen.getByTestId(cell.id);
       const getMin = (utc) => dayjs.unix(utc).minute();
-      const posts = heatMapData[cell.day][cell.hour].sort((a, b) => getMin(a.created_utc) - getMin(b.created_utc));
+      const posts = heatMapData[cell.day][cell.hour];
+      posts.sort((a, b) => getMin(a.created_utc) - getMin(b.created_utc));
 
-      if (parseInt(randomCell.textContent) !== 0) {
+      if (parseInt(randomCell.textContent, 10) !== 0) {
         fireEvent.click(randomCell);
         const postTable = screen.getByTestId('postTable');
         const postTableRows = within(postTable).getAllByRole('row');
 
-        postTableRows.map((row, idx) => {
+        postTableRows.forEach((row, idx) => {
           if (idx !== 0) {
             within(row).getByText(posts[idx - 1].title);
             within(row).getByText(dayjs.unix(posts[idx - 1].created_utc).format('h:mma'));
