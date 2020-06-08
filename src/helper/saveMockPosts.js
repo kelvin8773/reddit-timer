@@ -1,4 +1,8 @@
-// Run with Node.js Only
+// Run with Node.js
+// Put desire subreddit as first argument
+// example - node ./saveMockPosts.js javascript
+// example output - mockPosts_javascript.json
+
 const fs = require('fs');
 const axios = require('axios');
 const dayjs = require('dayjs');
@@ -29,11 +33,26 @@ const saveMockPosts = (path, data) => {
   };
 }
 
-const redditName = 'learnreactjs';
+const redditName = process.argv[2];
+console.log('Saving subreddit - ' + redditName + ' posts to disk...');
 
 getPosts(redditName)
   .then(res => {
-    saveMockPosts(`./src/helper/__mocks__/mockPosts_${redditName}.json`, res);
+    const data = [];
+    res.map((post) => {
+      const oneEntry = {
+        id: post.id,
+        title: post.title,
+        full_link: post.full_link,
+        created_utc: post.created_utc,
+        score: post.score,
+        num_comments: post.num_comments,
+        author: post.author,
+      };
+      data.push(oneEntry);
+    })
+    saveMockPosts(`./src/helper/__mocks__/mockPosts_${redditName}.json`, data);
+    console.log(`mockPosts_${redditName}.json` + 'saved.');
   })
   .catch((error) => {
     console.log(error.message);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, act, waitForElementToBeRemoved, fireEvent } from '@testing-library/react';
+import { render, screen, act, waitForElementToBeRemoved, fireEvent, findByText } from '@testing-library/react';
 import { Route, MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
@@ -11,18 +11,16 @@ import searchJson from '../helper/search.json';
 import mockPosts_reactjslearn from '../helper/__mocks__/mockPosts_reactjslearn.json';
 import mockPosts_javascript from '../helper/__mocks__/mockPosts_javascript.json';
 
-jest.mock('../helper/redditAPI');
-afterEach(() => jest.clearAllMocks());
-
 const { defaultSubreddit } = searchJson;
+jest.mock('../helper/redditAPI');
 
 const mockGetPosts = (state, data) => {
   if (state === 'pass') {
     getPosts.mockResolvedValueOnce(data);
   } else if (state === 'fail') {
-    getPosts.mockRejectedValue(data);
+    getPosts.mockRejectedValue(new Error(data[0]));
   }
-}
+};
 
 const setup = (state, data) => {
   const component = <Search />;
@@ -43,31 +41,26 @@ const setup = (state, data) => {
       </Provider>
     )
   )
-}
+};
 
-describe('Search Page', () => {
-  test('loading default subreddit with success', async () => {
+afterEach(() => jest.clearAllMocks());
+
+describe('Search page', () => {
+  test('loading default subreddit and search new subreddit success flow', async () => {
     setup('pass', mockPosts_javascript);
-    expect(screen.getByTestId('searchForm')).toBeInTheDocument();
-    const input = screen.getByTestId('searchInput');
-    expect(input.value).toEqual(defaultSubreddit);
 
-    await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
-    expect(screen.getByTestId('heatMap')).toBeInTheDocument();
-
-    expect(getPosts).toHaveBeenCalledTimes(1);
-    expect(getPosts).toBeCalledWith(expect.stringContaining(defaultSubreddit));
-    await act(() => Promise.resolve());
-  });
-
-  test('change subreddit being search', async () => {
     const NEW_SUBREDDIT = 'reactjslearn';
-    setup('pass', []);
     const button = screen.getByRole('button');
     const input = screen.getByTestId('searchInput');
-    expect(input.value).toEqual(defaultSubreddit);
-    await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
 
+    // First round load default value
+    expect(input.value).toEqual(defaultSubreddit);
+    expect(button).toBeDisabled();
+    await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
+    expect(button).toBeEnabled();
+    expect(screen.getByTestId('heatMap')).toBeInTheDocument();
+
+    // Second round load user input valid value
     fireEvent.change(input, { target: { value: NEW_SUBREDDIT } });
     expect(input.value).toEqual(NEW_SUBREDDIT);
     mockGetPosts('pass', mockPosts_reactjslearn);
@@ -75,10 +68,34 @@ describe('Search Page', () => {
     await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
     expect(screen.getByTestId('heatMap')).toBeInTheDocument();
 
+    // Check mock api calls
     expect(getPosts).toHaveBeenCalledTimes(2);
     expect(getPosts).toBeCalledWith(expect.stringContaining(defaultSubreddit));
     expect(getPosts).toBeCalledWith(expect.stringContaining(NEW_SUBREDDIT));
-    await act(() => Promise.resolve());
   });
+
+  test('show subreddit not found msg when result zero length result', async () => {
+    setup('pass', []);
+    await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
+    await screen.findByText('No such subreddit!');
+    expect(getPosts).toHaveBeenCalledTimes(1);
+  });
+
+  test('show network error msg when api call fail', async () => {
+    setup('fail', ['Network Error, Check Again!']);
+    await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
+    await screen.findByText('Network Error, Check Again!');
+    expect(getPosts).toHaveBeenCalledTimes(1);
+  });
+
+  test('heatmap value match mock post data', async () => {
+    setup('pass', mockPosts_javascript);
+    await waitForElementToBeRemoved(screen.getByTestId('loadSpinner'));
+    expect(screen.getByTestId('heatMap')).toBeInTheDocument();
+
+
+
+  });
+
 
 })

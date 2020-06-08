@@ -16,9 +16,22 @@ const getPosts = async (subreddit) => {
   try {
     const response = await axios.get(url);
     if (response.status === 200) {
-      return response.data.data;
+      const posts = [];
+      response.data.data.map((post) => {
+        const oneEntry = {
+          id: post.id,
+          title: post.title,
+          full_link: post.full_link,
+          created_utc: post.created_utc,
+          score: post.score,
+          num_comments: post.num_comments,
+          author: post.author,
+        };
+        posts.push(oneEntry);
+      })
+
+      return posts;
     }
-    throw new Error('Network Error, Check Again!');
   } catch (error) {
     throw new Error(error.message);
   }
