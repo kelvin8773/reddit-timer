@@ -5,11 +5,21 @@ import Footer from './index';
 
 const Links = [
   { text: 'ooloo.io', location: 'https://ooloo.io' },
-  { text: 'link for home', location: '/' },
   { text: 'Terms & Privacy', location: '/terms' },
 ];
 
 describe('Footer Links', () => {
+  test('check if logo loaded', () => {
+    render(
+      <BrowserRouter>
+        <Footer />
+      </BrowserRouter >,
+    );
+    const logo = screen.getByTestId('footLogo');
+    expect(logo).toHaveAttribute('href', '/');
+
+  });
+
   test.each(Links)(
     'Check if have %s link.',
     (link) => {
@@ -18,8 +28,7 @@ describe('Footer Links', () => {
           <Footer />
         </BrowserRouter>,
       );
-      const linkDom = screen.queryByText(link.text) || screen.getByTestId('footLogo');
-
+      const linkDom = screen.queryByText(link.text);
       expect(linkDom).toHaveAttribute('href', link.location);
     },
   );

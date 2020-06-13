@@ -8,20 +8,20 @@ jest.mock('./helper/redditAPI');
 expect.extend(toHaveNoViolations);
 
 describe('App', () => {
-  test('header should load', () => {
+  test('header section should load', () => {
     render(<App />);
-    expect(screen.getByTestId('header')).toBeInTheDocument();
+    expect(screen.getByRole('navigation')).toBeInTheDocument();
   });
 
-  test('main should load', () => {
+  test('main section should load', () => {
     render(<App />);
-    expect(screen.getByTestId('main')).toBeInTheDocument();
+    expect(screen.getByRole('main')).toBeInTheDocument();
   });
 
 
-  test('footer should load', () => {
+  test('footer section should load', () => {
     render(<App />);
-    expect(screen.getByTestId('footer')).toBeInTheDocument();
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
   });
 
   test('should have no accessibility violations.', async () => {

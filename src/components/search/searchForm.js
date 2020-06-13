@@ -84,6 +84,7 @@ const SearchForm = ({ loading }) => {
         <Button
           type="submit"
           disabled={!isValidSearch || loading}
+          data-testid="searchButton"
         >
           Search
         </Button>

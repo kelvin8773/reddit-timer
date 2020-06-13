@@ -118,6 +118,7 @@ describe('Search page', () => {
     expect(getPosts).toHaveBeenCalledTimes(1);
   });
 
+  // skip all mock posts test to save some time
   xtest('heatmap value match all mock posts data & use correct color', async () => {
     setup('pass', mockPostsJavascript);
     const heatMapData = convertToHeatMapData(mockPostsJavascript);
@@ -189,7 +190,7 @@ describe('Search page', () => {
             within(row).getByText(posts[idx - 1].title);
             within(row).getByText(dayjs.unix(posts[idx - 1].created_utc).format('h:mma'));
             within(row).getByText((posts[idx - 1].score).toString());
-            // within(row).getByText((posts[idx - 1].num_comments).toString());
+            within(row).getByText((posts[idx - 1].num_comments).toString());
             within(row).getByText(posts[idx - 1].author);
           }
         });

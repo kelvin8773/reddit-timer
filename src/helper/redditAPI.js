@@ -1,9 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-// eslint-disable-next-line no-console
-console.log('use real API');
-
 // API Reference - https://reddit-api.readthedocs.io/en/latest/#searching-submissions
 
 const BASE_URL = 'https://api.pushshift.io/reddit/submission/search/';

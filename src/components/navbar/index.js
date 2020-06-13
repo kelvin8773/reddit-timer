@@ -33,7 +33,7 @@ const Navbar = () => {
   const subReddit = SearchJson.defaultSubreddit;
 
   return (
-    <StyledNavbar data-testid="header">
+    <StyledNavbar role="navigation" aria-label="header links">
       <Link to="/" data-testid="navLogo">
         <StyledLogo />
       </Link>

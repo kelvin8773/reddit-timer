@@ -14,7 +14,7 @@ const StyledMain = Styled.div`
 `;
 
 const Main = () => (
-  <StyledMain data-testid="main">
+  <StyledMain role="main">
     <Switch>
       <Route path="/search/:redditName">
         <Search />

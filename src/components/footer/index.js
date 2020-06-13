@@ -5,7 +5,7 @@ import {
 import Styled from 'styled-components';
 import { ReactComponent as Logo } from './sign.svg';
 
-const StyledFooter = Styled.div`
+const StyledFooter = Styled.footer`
     height: 100px;
     display: flex;
     align-items: center;
@@ -25,7 +25,7 @@ const LinkItem = Styled(Link)`
 `;
 
 const Footer = () => (
-  <StyledFooter data-testid="footer">
+  <StyledFooter role="contentinfo" aria-label="footer links">
     <LinkItem
       as="a"
       href="https://ooloo.io"
