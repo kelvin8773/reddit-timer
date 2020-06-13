@@ -39,5 +39,4 @@ describe('NavBar', () => {
       expect(linkDom).toHaveAttribute('href', link.location);
     },
   );
-
 });

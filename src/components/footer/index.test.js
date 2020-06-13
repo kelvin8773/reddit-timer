@@ -13,11 +13,10 @@ describe('Footer Links', () => {
     render(
       <BrowserRouter>
         <Footer />
-      </BrowserRouter >,
+      </BrowserRouter>,
     );
     const logo = screen.getByTestId('footLogo');
     expect(logo).toHaveAttribute('href', '/');
-
   });
 
   test.each(Links)(
