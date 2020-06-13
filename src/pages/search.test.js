@@ -189,8 +189,8 @@ describe('Search page', () => {
           if (idx !== 0) {
             within(row).getByText(posts[idx - 1].title);
             within(row).getByText(dayjs.unix(posts[idx - 1].created_utc).format('h:mma'));
-            within(row).getByText((posts[idx - 1].score).toString());
-            within(row).getByText((posts[idx - 1].num_comments).toString());
+            expect(within(row).getByTestId('postScore').textContent).toEqual((posts[idx - 1].score).toString());
+            expect(within(row).getByTestId('postCommentNum').textContent).toEqual((posts[idx - 1].num_comments).toString());
             within(row).getByText(posts[idx - 1].author);
           }
         });
