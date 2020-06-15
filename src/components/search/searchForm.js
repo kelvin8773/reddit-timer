@@ -69,7 +69,7 @@ const SearchForm = ({ loading }) => {
   }, [redditName]);
 
   return (
-    <Container data-testid="searchForm">
+    <Container>
       <FormTitle>
         Find the best time for a subreddit
       </FormTitle>
