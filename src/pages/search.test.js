@@ -154,6 +154,8 @@ describe('Search page', () => {
       expect(showNumber).toEqual(heatMapData[cell.day][cell.hour].length);
       expect(randomCell).toHaveStyle('background:', expectColor);
     });
+    expect(getPosts).toHaveBeenCalledTimes(1);
+
   });
 
   test('heatmap display the correct timezone', async () => {

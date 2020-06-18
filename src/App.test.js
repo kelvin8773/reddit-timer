@@ -1,11 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import App from './App';
 
-jest.mock('./helper/redditAPI');
-
+import { render, screen } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
 expect.extend(toHaveNoViolations);
+
+jest.mock('./helper/redditAPI');
 
 describe('App', () => {
   test('header section should load', () => {
