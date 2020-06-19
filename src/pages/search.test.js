@@ -155,7 +155,6 @@ describe('Search page', () => {
       expect(randomCell).toHaveStyle('background:', expectColor);
     });
     expect(getPosts).toHaveBeenCalledTimes(1);
-
   });
 
   test('heatmap display the correct timezone', async () => {
