@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
@@ -25,17 +25,19 @@ const setup = (component, history) => (
 
 describe('main content', () => {
   const sections = [
-    { id: 'howItWorks', showTitle: 'How it works' },
-    { id: 'about', showTitle: 'About' },
+    { title: 'How it works' },
+    { title: 'About' },
   ];
 
   test('Info sections are loaded on Home Page', () => {
     const history = createMemoryHistory();
     setup(<Main />, history);
 
-    sections.forEach((section) => {
-      expect(screen.getByTestId(section.id)).toBeInTheDocument();
-      expect(screen.getByText(section.showTitle)).toBeInTheDocument();
+    const articles = screen.getAllByRole('article');
+
+    sections.forEach((section, idx) => {
+      const article = articles[idx];
+      within(article).getByText(section.title);
     });
   });
 

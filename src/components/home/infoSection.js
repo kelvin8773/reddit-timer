@@ -1,11 +1,11 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-const Section = Styled.div`
+const Section = Styled.section`
   margin-bottom: 100px;
 `;
 
-const Info = Styled.div`
+const Info = Styled.article`
   margin:0 auto 105px;
   width: 738px;
   max-width: 100%;
@@ -33,7 +33,7 @@ const InfoLine = Styled.div`
 
 const InfoSection = () => (
   <Section>
-    <Info id="howItWorks" data-testid="howItWorks">
+    <Info id="howItWorks" >
       <HeadLine>
         How it works
       </HeadLine>
@@ -49,7 +49,7 @@ const InfoSection = () => (
       </InfoLine>
     </Info>
 
-    <Info id="about" data-testid="about">
+    <Info id="about" >
       <AboutHeadLine>
         About
       </AboutHeadLine>
