@@ -15,7 +15,7 @@ describe('Footer Links', () => {
         <Footer />
       </BrowserRouter>,
     );
-    const logo = screen.getByTestId('footLogo');
+    const logo = screen.getByRole('link', { name: /sign\.svg/ });
     expect(logo).toHaveAttribute('href', '/');
   });
 

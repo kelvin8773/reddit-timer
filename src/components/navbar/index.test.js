@@ -20,7 +20,7 @@ describe('NavBar', () => {
         </BrowserRouter>
       </Theme>,
     );
-    const logo = screen.getByTestId('navLogo');
+    const logo = screen.getByRole('link', { name: /logo\.svg/ });
     expect(logo).toHaveAttribute('href', '/');
   });
 

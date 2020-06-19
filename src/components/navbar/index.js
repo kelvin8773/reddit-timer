@@ -34,7 +34,7 @@ const Navbar = () => {
 
   return (
     <StyledNavbar role="navigation" aria-label="header links">
-      <Link to="/" data-testid="navLogo">
+      <Link to="/">
         <StyledLogo />
       </Link>
 
