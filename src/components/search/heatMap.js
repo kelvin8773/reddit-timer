@@ -97,7 +97,7 @@ const HeatMap = () => {
     ? posts[getDay(clickedIndex)][getHour(clickedIndex)] : [];
 
   return (
-    <HeatMapContainter>
+    <HeatMapContainter data-testid="heatMap">
       <HeatMapCoLabels>
         {
           HEATMAP_HOUR_LABELS.map((label) => (
@@ -117,6 +117,7 @@ const HeatMap = () => {
                 {posts[dayOfWeek].map((data, timeSlot) => (
                   <HeatMapCell
                     key={getIndex(dayOfWeek, timeSlot)}
+                    data-testid={`cell-${getIndex(dayOfWeek, timeSlot)}`}
                     postNumber={data.length}
                     clicked={clickedIndex === getIndex(dayOfWeek, timeSlot)}
                     onClick={() => setClickedIndex(getIndex(dayOfWeek, timeSlot))}
@@ -130,8 +131,9 @@ const HeatMap = () => {
         </tbody>
       </table>
 
-      <HeatMapTimezone>
-        All times are shown in your timezone:&nbsp;
+      <HeatMapTimezone data-testid="timezoneMsg">
+        All times are shown in your timezone:
+        {' '}
         <strong>{localTimezone}</strong>
       </HeatMapTimezone>
 

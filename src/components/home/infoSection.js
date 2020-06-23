@@ -1,11 +1,11 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-const Section = Styled.div`
+const Section = Styled.section`
   margin-bottom: 100px;
 `;
 
-const Info = Styled.div`
+const Info = Styled.article`
   margin:0 auto 105px;
   width: 738px;
   max-width: 100%;
@@ -14,7 +14,7 @@ const Info = Styled.div`
   }
 `;
 
-const HeadLine = Styled.h3`
+const HeadLine = Styled.h2`
   font-size: 24px;
   color: #000;
   font-weight: 400;

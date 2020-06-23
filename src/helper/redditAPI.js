@@ -13,13 +13,24 @@ const getPosts = async (subreddit) => {
 
   try {
     const response = await axios.get(url);
-    if (response.status === 200 && response.data.data.length > 0) {
-      return response.data.data;
+    if (response.status === 200) {
+      return response.data.data.reduce((result, post) => {
+        result.push({
+          id: post.id,
+          title: post.title,
+          full_link: post.full_link,
+          created_utc: post.created_utc,
+          score: post.score,
+          num_comments: post.num_comments,
+          author: post.author,
+        });
+        return result;
+      }, []);
     }
-    throw new Error('No such subreddit!');
   } catch (error) {
     throw new Error(error.message);
   }
+  return null;
 };
 
 export default getPosts;

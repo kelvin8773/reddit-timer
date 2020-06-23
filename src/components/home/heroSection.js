@@ -20,7 +20,8 @@ const HeroTitle = Styled.h1`
   margin: 27px auto 20px;
 `;
 
-const HeroSubTitle = Styled.h4`
+const HeroSubTitle = Styled.div`
+  font-size: 16px;
   margin: 0 auto 46px;
   color: ${({ theme }) => theme.colors.grayBase};
 `;

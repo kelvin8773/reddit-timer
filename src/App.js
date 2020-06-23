@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
 } from 'react-router-dom';
 
 import Styled from 'styled-components';
@@ -22,13 +22,13 @@ const App = () => (
   <Theme>
     <GlobalStyle />
     <AppContainer>
-      <Router>
+      <BrowserRouter>
         <Navbar />
 
         <Main />
 
         <Footer />
-      </Router>
+      </BrowserRouter>
     </AppContainer>
   </Theme>
 

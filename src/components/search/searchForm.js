@@ -3,9 +3,9 @@ import {
   useParams,
   useHistory,
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Styled from 'styled-components';
 import Button from '../button';
-
 
 const Container = Styled.div`
   display: flex;
@@ -40,14 +40,28 @@ const SearchInput = Styled.input`
   margin-right: 10px;
 `;
 
-const SearchForm = () => {
+const SearchForm = ({ loading }) => {
   const { redditName } = useParams();
-  const [subreddit, setSubreddit] = useState(redditName);
   const history = useHistory();
+  const [subreddit, setSubreddit] = useState(redditName);
+  const [isValidSearch, setIsValidSearch] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push(`/search/${subreddit}`);
+    if (isValidSearch && !loading) {
+      history.push(`/search/${subreddit}`);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { value } = e.currentTarget;
+    const validInputRegex = /^\w*$/;
+    const isValidInput = validInputRegex.test(value);
+    if (isValidInput) {
+      setSubreddit(value);
+      const validSearchRegex = /^[a-z]{1}[\w]{2,20}$/gim;
+      setIsValidSearch(validSearchRegex.test(value));
+    }
   };
 
   useEffect(() => {
@@ -62,19 +76,25 @@ const SearchForm = () => {
       <FormWrapper onSubmit={handleSubmit}>
         <InputPrefix>r /</InputPrefix>
         <SearchInput
-          id="search-input"
           type="text"
+          data-testid="searchInput"
           value={subreddit}
-          onChange={(e) => setSubreddit(e.target.value)}
+          onChange={handleChange}
         />
         <Button
           type="submit"
+          disabled={!isValidSearch || loading}
+          data-testid="searchButton"
         >
           Search
         </Button>
       </FormWrapper>
     </Container>
   );
+};
+
+SearchForm.propTypes = {
+  loading: PropTypes.bool.isRequired,
 };
 
 export default SearchForm;

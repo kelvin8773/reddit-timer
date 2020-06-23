@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^10.0.0",
     "axios": "^0.19.2",
     "dayjs": "^1.8.25",
+    "history": "^4.10.1",
+    "jest-axe": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -17,13 +19,14 @@
     "react-router-hash-link": "^1.2.2",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^5.1.0",
     "styled-normalize": "^8.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "format": "eslint --fix ."
@@ -47,6 +50,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "node-sass": "^4.13.1"
   }
 }

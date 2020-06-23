@@ -60,7 +60,7 @@ const PostTable = ({ posts }) => {
   const sortedPosts = [...posts].sort((a, b) => getMin(a.created_utc) - getMin(b.created_utc));
 
   return (
-    <div>
+    <div data-testid="postTable">
       <h3>Posts</h3>
       <TableWrapper>
         <thead>
@@ -86,8 +86,8 @@ const PostTable = ({ posts }) => {
                   </a>
                 </TableData>
                 <TableData>{dayjs.unix(post.created_utc).format('h:mma')}</TableData>
-                <TableData>{post.score}</TableData>
-                <TableData>{post.num_comments}</TableData>
+                <TableData data-testid="postScore">{post.score}</TableData>
+                <TableData data-testid="postCommentNum">{post.num_comments}</TableData>
                 <TableData>
                   <a
                     target="_blank"

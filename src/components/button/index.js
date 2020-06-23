@@ -15,6 +15,10 @@ const Button = Styled.button`
     background: #fcc755;
     cursor: pointer;
   }
+  &:disabled {
+    cursor: not-allowed;
+    background: #ccc;
+  }
 `;
 
 export default Button;
