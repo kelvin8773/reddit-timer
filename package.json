@@ -51,6 +51,6 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
-    "node-sass": "^4.13.1"
+    "node-sass": "^7.0.0"
   }
 }
